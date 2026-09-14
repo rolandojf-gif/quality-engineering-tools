@@ -69,7 +69,6 @@ Search the repository for `REPLACE-ME`:
 
 | Where | What |
 | --- | --- |
-| `index.html` — `<link rel="canonical">` | set the final production domain |
 
 The GitHub links already point at `https://github.com/rolandojf-gif`.
 
