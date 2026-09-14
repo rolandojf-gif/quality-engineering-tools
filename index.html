@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Quality Engineering Tools — Practical tools for automotive quality engineering</title>
+<meta name="description" content="Practical digital tools for automotive quality engineering. Interactive applications built around VDA 6.3:2023 process auditing and AIAG-VDA statistical process control.">
+<meta name="theme-color" content="#f8f8f6">
+<link rel="canonical" href="https://qualityengineeringtools.netlify.app/">
+
+<!-- Open Graph / social preview. Add media/og-image.png (1200x630) and uncomment og:image. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Quality Engineering Tools">
+<meta property="og:description" content="Practical digital tools for automotive quality engineering.">
+<meta property="og:locale" content="en">
+<!-- <meta property="og:image" content="/media/og-image.png"> -->
+
+<!-- Inline SVG favicon: a thin square mark. No extra request, no external asset. -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f8f8f6'/><rect x='7.5' y='7.5' width='17' height='17' fill='none' stroke='%23191922' stroke-width='2'/></svg>">
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================================================
+     HEADER — floating, light, compact
+     ============================================================ -->
+<header class="masthead" id="masthead">
+  <div class="masthead__bar">
+    <a class="brand" href="#top">Quality Engineering Tools</a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <ul class="site-nav__list">
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="https://github.com/rolandojf-gif" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
+      <a class="pill pill--action" href="#tools">Explore Tools</a>
+    </nav>
+  </div>
+</header>
+
+<!-- tabindex="-1" lets the skip link move focus here, not just scroll. -->
+<main id="main" tabindex="-1">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="container">
+      <h1 class="hero__title" id="hero-title">Quality Engineering<br>Tools</h1>
+
+      <div class="hero__body">
+        <p class="hero__lead">Practical digital tools for automotive quality engineering.</p>
+        <p class="hero__note">Interactive engineering applications built around established industry standards and real quality workflows.</p>
+      </div>
+
+      <dl class="hero__meta">
+        <div class="hero__meta-item">
+          <dt>Standard</dt>
+          <dd>VDA 6.3:2023</dd>
+        </div>
+        <div class="hero__meta-item">
+          <dt>Standard</dt>
+          <dd>AIAG-VDA SPC</dd>
+        </div>
+        <div class="hero__meta-item">
+          <dt>Project</dt>
+          <dd>Independent</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TOOLS — the central section of the site
+       ============================================================ -->
+  <section class="section products" id="tools" aria-labelledby="tools-title">
+    <div class="container">
+
+      <header class="section-head">
+        <p class="section-index">/01</p>
+        <div class="section-head__text">
+          <h2 class="section-title" id="tools-title">Tools</h2>
+          <p class="section-note">Current applications.</p>
+        </div>
+      </header>
+
+      <!-- Product 0.1 ------------------------------------------------ -->
+      <article class="product">
+        <figure class="product__media">
+          <div class="media-frame">
+            <!-- Base layer: a quiet typographic marker, not a logo. It stays
+                 underneath whatever is placed above it. -->
+            <span class="media-frame__glyph" aria-hidden="true">V</span>
+
+            <!-- Overlay layer. Absolutely positioned over the glyph, so it
+                 adds no layout and fades in on opacity alone. js/main.js plays
+                 it when the row gains `preview-active`. -->
+            <video
+              class="media-frame__video"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
+            >
+              <source src="assets/video/vda-preview.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+
+        <div class="product__heading">
+          <!-- When the tool has a public URL, wrap this heading text in
+               <a class="product__link" href="…">…</a> — the styles already
+               cover .product__link, and keyboard focus will reveal the preview. -->
+          <h3 class="product__title">VDA 6.3<br>Process Audit<br>Copilot</h3>
+        </div>
+
+        <p class="product__desc">Prepare, conduct and evaluate VDA 6.3:2023 process audits.</p>
+
+        <p class="product__index">/0.1</p>
+      </article>
+
+      <!-- Product 0.2 ------------------------------------------------ -->
+      <article class="product">
+        <figure class="product__media">
+          <div class="media-frame">
+            <!-- Base layer: a quiet typographic marker, not a logo. It stays
+                 underneath whatever is placed above it. -->
+            <span class="media-frame__glyph" aria-hidden="true">S</span>
+
+            <!-- Overlay layer. Absolutely positioned over the glyph, so it
+                 adds no layout and fades in on opacity alone. js/main.js plays
+                 it when the row gains `preview-active`. -->
+            <video
+              class="media-frame__video"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
+            >
+              <source src="assets/video/spc-preview.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+
+        <div class="product__heading">
+          <h3 class="product__title">AIAG-VDA<br>SPC</h3>
+          <p class="product__subtitle">Interactive Guide</p>
+        </div>
+
+        <p class="product__desc">Interactive guidance for statistical process control, process stability and capability analysis.</p>
+
+        <p class="product__index">/0.2</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BOTTOM CTA
+       ============================================================ -->
+  <section class="cta-shell" aria-label="Next steps">
+    <div class="container">
+      <div class="cta-grid">
+        <a class="cta cta--one" href="#tools">
+          <span class="cta__inner">
+            <span class="cta__label">Explore the Tools</span>
+            <span class="cta__arrow" aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+
+        <a class="cta cta--two" href="#demo-access">
+          <span class="cta__inner">
+            <span class="cta__label">Request Demo Access</span>
+            <span class="cta__arrow" aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ENGINEERING PHILOSOPHY
+       ============================================================ -->
+  <section class="section philosophy" aria-labelledby="philosophy-title">
+    <div class="container">
+
+      <header class="section-head">
+        <p class="section-index">/02</p>
+        <div class="section-head__text">
+          <h2 class="section-title" id="philosophy-title">Engineering First</h2>
+          <p class="section-lead">Tools designed around established quality methods, practical workflows and technical reasoning rather than generic AI output.</p>
+        </div>
+      </header>
+
+      <dl class="principles">
+        <div class="principle">
+          <dt class="principle__term">Standards based</dt>
+          <dd class="principle__def">Structure, terminology and evaluation logic follow the published industry standards the work is actually audited against.</dd>
+        </div>
+        <div class="principle">
+          <dt class="principle__term">Interactive</dt>
+          <dd class="principle__def">Working applications rather than documents: structured input, immediate evaluation, results you can act on.</dd>
+        </div>
+        <div class="principle">
+          <dt class="principle__term">Engineering first</dt>
+          <dd class="principle__def">Methods, calculations and decision rules defined by quality engineering practice, not by presentation.</dd>
+        </div>
+      </dl>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section class="section about" id="about" aria-labelledby="about-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-index">/03</p>
+        <div class="section-head__text">
+          <h2 class="section-title" id="about-title">About</h2>
+          <div class="prose">
+            <p>Quality Engineering Tools is an independent project focused on building practical digital tools for automotive quality engineering.</p>
+            <p>Created from real-world experience in supplier quality, process auditing, SPC and automotive manufacturing.</p>
+          </div>
+        </div>
+      </header>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FUTURE TOOLS
+       ============================================================ -->
+  <section class="section future" aria-labelledby="future-title">
+    <div class="container">
+
+      <header class="section-head">
+        <p class="section-index">/04</p>
+        <div class="section-head__text">
+          <h2 class="section-title" id="future-title">More Tools</h2>
+          <p class="section-note">Areas under consideration. Not yet available.</p>
+        </div>
+      </header>
+
+      <ul class="future-list">
+        <li class="future-item">
+          <span class="future-item__name">Core Tools</span>
+          <span class="future-item__desc">APQP, PPAP, FMEA and MSA workflows.</span>
+          <span class="future-item__state">Planned</span>
+        </li>
+        <li class="future-item">
+          <span class="future-item__name">Supplier Quality</span>
+          <span class="future-item__desc">Supplier assessment, escalation and performance tracking.</span>
+          <span class="future-item__state">Planned</span>
+        </li>
+        <li class="future-item">
+          <span class="future-item__name">Problem Solving</span>
+          <span class="future-item__desc">8D, root cause analysis and structured problem solving.</span>
+          <span class="future-item__state">Planned</span>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DEMO ACCESS — Netlify form
+       ============================================================ -->
+  <section class="section demo" id="demo-access" aria-labelledby="demo-title">
+    <div class="container">
+
+      <header class="section-head">
+        <p class="section-index">/05</p>
+        <div class="section-head__text">
+          <h2 class="section-title" id="demo-title">48-Hour<br>Demo Access</h2>
+          <p class="section-lead">Try the Quality Engineering Tools with temporary 48-hour access. Choose the tool you want to evaluate and request a temporary access link.</p>
+        </div>
+      </header>
+
+      <div class="demo-body">
+        <p class="demo-note">Demo access is provided through a temporary link valid for 48 hours.</p>
+
+        <!-- Shown by js/main.js when Netlify redirects back after a post. -->
+        <div class="form-done" id="demo-done" role="status" hidden>
+          <p class="form-done__title">Request received.</p>
+          <p class="form-done__note">Your 48-hour demo access details will be sent by email.</p>
+        </div>
+
+        <form
+          class="form"
+          id="demo-form"
+          name="demo-access"
+          method="POST"
+          action="/?demo-request=received#demo-access"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <!-- Netlify needs the form name posted with the body too. -->
+          <input type="hidden" name="form-name" value="demo-access">
+
+          <p class="form__honeypot" hidden>
+            <label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
+
+          <p class="field">
+            <label class="field__label" for="demo-name">Name <span class="field__req" aria-hidden="true">*</span></label>
+            <input class="field__input" type="text" id="demo-name" name="name" autocomplete="name" required>
+          </p>
+
+          <p class="field">
+            <label class="field__label" for="demo-email">Work email <span class="field__req" aria-hidden="true">*</span></label>
+            <input class="field__input" type="email" id="demo-email" name="email" autocomplete="email" required>
+          </p>
+
+          <p class="field field--wide">
+            <label class="field__label" for="demo-company">Company</label>
+            <input class="field__input" type="text" id="demo-company" name="company" autocomplete="organization">
+          </p>
+
+          <fieldset class="field field--wide field--choice">
+            <legend class="field__label">Tool <span class="field__req" aria-hidden="true">*</span></legend>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name="tool" value="VDA 6.3 Process Audit Copilot" required>
+                <span>VDA 6.3 Process Audit Copilot</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="tool" value="AIAG-VDA SPC Interactive Guide">
+                <span>AIAG-VDA SPC Interactive Guide</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="tool" value="Both tools">
+                <span>Both tools</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <p class="field field--wide">
+            <label class="field__label" for="demo-message">Message</label>
+            <textarea class="field__input field__input--area" id="demo-message" name="message" rows="4"></textarea>
+          </p>
+
+          <div class="form__actions">
+            <p class="form__required">* Required</p>
+            <button class="form__submit" type="submit">
+              <span>Request access</span>
+              <span class="form__submit-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEEDBACK — second, independent Netlify form
+       ============================================================ -->
+  <section class="section feedback" id="feedback" aria-labelledby="feedback-title">
+    <div class="container">
+
+      <header class="section-head">
+        <p class="section-index">/06</p>
+        <div class="section-head__text">
+          <h2 class="section-title" id="feedback-title">Feedback</h2>
+          <p class="section-lead">Help improve the tools.</p>
+        </div>
+      </header>
+
+      <!-- .demo-body / .demo-note are the shared layout for both form
+           sections; reused here rather than duplicated. -->
+      <div class="demo-body">
+        <p class="demo-note">Your feedback helps shape what gets fixed, improved and built next.</p>
+
+        <!-- Shown by js/main.js when Netlify redirects back after a post. -->
+        <div class="form-done" id="feedback-done" role="status" hidden>
+          <p class="form-done__title">Feedback received.</p>
+          <p class="form-done__note">Thank you for helping improve the tools.</p>
+        </div>
+
+        <form
+          class="form"
+          id="feedback-form"
+          name="feedback"
+          method="POST"
+          action="/?feedback=received#feedback"
+          data-netlify="true"
+          netlify-honeypot="bot-field-feedback"
+        >
+          <input type="hidden" name="form-name" value="feedback">
+
+          <p class="form__honeypot" hidden>
+            <label>Leave this field empty <input name="bot-field-feedback" tabindex="-1" autocomplete="off"></label>
+          </p>
+
+          <fieldset class="field field--wide field--choice">
+            <legend class="field__label">Tool <span class="field__req" aria-hidden="true">*</span></legend>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name="tool" value="VDA 6.3 Process Audit Copilot" required>
+                <span>VDA 6.3 Process Audit Copilot</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="tool" value="AIAG-VDA SPC Interactive Guide">
+                <span>AIAG-VDA SPC Interactive Guide</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="tool" value="Quality Engineering Tools website">
+                <span>Quality Engineering Tools website</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field field--wide field--choice">
+            <legend class="field__label">Type <span class="field__req" aria-hidden="true">*</span></legend>
+            <div class="choices choices--four">
+              <label class="choice">
+                <input type="radio" name="type" value="Bug" required>
+                <span>Bug</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="type" value="Suggestion">
+                <span>Suggestion</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="type" value="Missing feature">
+                <span>Missing feature</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="type" value="General feedback">
+                <span>General feedback</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <p class="field field--wide">
+            <label class="field__label" for="feedback-message">Message <span class="field__req" aria-hidden="true">*</span></label>
+            <textarea class="field__input field__input--area" id="feedback-message" name="message" rows="4" required></textarea>
+          </p>
+
+          <p class="field field--wide">
+            <label class="field__label" for="feedback-email">Email <span class="field__optional">optional</span></label>
+            <input class="field__input" type="email" id="feedback-email" name="email" autocomplete="email">
+          </p>
+
+          <div class="form__actions">
+            <p class="form__required">* Required</p>
+            <button class="form__submit" type="submit">
+              <span>Send feedback</span>
+              <span class="form__submit-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-brand">
+      <p class="footer-copy">&copy; 2026 Quality Engineering Tools</p>
+      <p class="footer-tagline">Independent engineering tools for automotive quality.</p>
+      <ul class="footer-social">
+        <!-- TODO: replace with the real LinkedIn profile URL. See README. -->
+        <li><a class="pill" href="https://www.linkedin.com/in/REPLACE-ME" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a class="pill" href="https://github.com/rolandojf-gif" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a class="pill" href="#feedback">Feedback</a></li>
+      </ul>
+    </div>
+
+    <nav class="footer-col" aria-labelledby="footer-tools">
+      <h2 class="footer-col__title" id="footer-tools">Tools</h2>
+      <ul class="footer-list">
+        <li><a href="#tools">VDA 6.3 Process Audit Copilot</a></li>
+        <li><a href="#tools">AIAG-VDA SPC Interactive Guide</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h2 class="footer-col__title">Disciplines</h2>
+      <ul class="footer-list footer-list--plain">
+        <li>Process Auditing</li>
+        <li>Statistical Process Control</li>
+        <li>Supplier Quality</li>
+        <li>Core Tools</li>
+      </ul>
+    </div>
+
+    <nav class="footer-col" aria-labelledby="footer-project">
+      <h2 class="footer-col__title" id="footer-project">Project</h2>
+      <ul class="footer-list">
+        <li><a href="#about">About</a></li>
+        <li><a href="https://github.com/rolandojf-gif" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/REPLACE-ME" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <div class="container footer-bottom">
+    <p>VDA and AIAG-VDA are referenced as published industry standards. This is an independent project and is not affiliated with, authorised by or endorsed by VDA, AIAG or their publishers.</p>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

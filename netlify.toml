@@ -1,0 +1,53 @@
+# Quality Engineering Tools — Netlify configuration
+#
+# The site is plain static files: there is nothing to build, so `publish`
+# simply points at the repository root and no build command is defined.
+
+[build]
+  publish = "."
+
+# --------------------------------------------------------------------------
+# Security headers
+#
+# The Content-Security-Policy below assumes the site stays self-contained:
+# no external scripts, styles, fonts or analytics, and no inline <script> or
+# style="" attributes. If you ever add one of those, widen this policy or the
+# browser will silently block it.
+# --------------------------------------------------------------------------
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+
+# --------------------------------------------------------------------------
+# Caching
+#
+# Filenames are not content-hashed (there is no build step), so CSS and JS are
+# revalidated on every visit and only the immutable media files are cached
+# long term.
+# --------------------------------------------------------------------------
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

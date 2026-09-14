@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Windows / Linux
+Thumbs.db
+desktop.ini
+*~
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Netlify
+.netlify/
+
+# Logs and local scratch
+*.log
+/tmp/
+.cache/
+
+# No build system is used here; these should never appear, but keep them out
+# of the repository if a tool ever creates them.
+node_modules/
+dist/
+
+# Local tooling
+.claude/
