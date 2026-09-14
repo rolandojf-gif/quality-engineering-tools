@@ -69,7 +69,6 @@ Search the repository for `REPLACE-ME`:
 
 | Where | What |
 | --- | --- |
-| `index.html` — footer and Project column | `https://www.linkedin.com/in/REPLACE-ME` — set the real LinkedIn profile |
 | `index.html` — `<link rel="canonical">` | set the final production domain |
 
 The GitHub links already point at `https://github.com/rolandojf-gif`.
