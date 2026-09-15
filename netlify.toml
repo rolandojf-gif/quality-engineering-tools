@@ -27,9 +27,8 @@
 # --------------------------------------------------------------------------
 # Caching
 #
-# Filenames are not content-hashed (there is no build step), so CSS and JS are
-# revalidated on every visit and only the immutable media files are cached
-# long term.
+# Filenames are not content-hashed (there is no build step), so CSS, JS and
+# videos are revalidated rather than cached as immutable.
 # --------------------------------------------------------------------------
 
 [[headers]]
@@ -50,4 +49,4 @@
 [[headers]]
   for = "/assets/video/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=86400, must-revalidate"

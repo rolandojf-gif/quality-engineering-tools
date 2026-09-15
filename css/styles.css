@@ -652,7 +652,11 @@ main:focus { outline: none; }
       "index media title";
     align-items: start;
   }
+}
 
+/* nowrap only once the title column can hold "VDA 6.3 Process".
+   At 64rem–68rem the line wraps so it is not clipped by overflow-x. */
+@media (min-width: 68rem) {
   .product__title-line { white-space: nowrap; }
 }
 
