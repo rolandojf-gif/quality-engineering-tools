@@ -320,7 +320,7 @@ main:focus { outline: none; }
   padding: 0.45rem 0.75rem;
   border: var(--rule);
   border-radius: 999px;
-  color: var(--color-text-2);
+  color: var(--color-text);
   transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
 
@@ -346,13 +346,17 @@ main:focus { outline: none; }
 .site-nav__list a {
   display: inline-block;
   font-size: var(--fs-small);
-  color: var(--color-text-2);
+  color: var(--color-text);
   transition: color var(--dur-fast) var(--ease);
 }
 
 .site-nav__list a:hover { color: var(--color-text); }
 
 .pill--action { align-self: flex-start; }
+
+/* Scoped to the bar: its backdrop is translucent, so the shared .pill grey is
+   not reliable over whatever scrolls underneath. Pills elsewhere keep it. */
+.masthead .pill { color: var(--color-text); }
 
 @media (min-width: 52rem) {
   .nav-toggle { display: none; }
@@ -654,10 +658,11 @@ main:focus { outline: none; }
   }
 }
 
-/* nowrap only once the title column can hold "VDA 6.3 Process".
-   At 64rem–68rem the line wraps so it is not clipped by overflow-x. */
+/* "VDA 6.3 Process" is the longest written line and the title column is only
+   7/14 of the content width, so --fs-product's own scale no longer fits it.
+   This is the largest size that holds both written lines intact up to 2560px. */
 @media (min-width: 68rem) {
-  .product__title-line { white-space: nowrap; }
+  .product__title { font-size: min(6.2vw, 6.5rem); }
 }
 
 
@@ -900,14 +905,12 @@ main:focus { outline: none; }
   color: var(--color-text);
   background-color: transparent;
   border: 0;
-  border-bottom: var(--rule);
+  border-bottom: 1px solid var(--color-text-muted);
   border-radius: 0;
   -webkit-appearance: none;
   appearance: none;
   transition: border-color var(--dur-fast) var(--ease);
 }
-
-.field__input:hover { border-bottom-color: var(--color-text-muted); }
 
 /* The global :focus-visible ring still applies; this just firms up the rule
    underneath it. No glow, no colour shift. */
