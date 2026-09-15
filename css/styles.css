@@ -59,13 +59,14 @@
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
                "Liberation Mono", monospace;
 
-  --fs-micro:   0.6875rem;
-  --fs-small:   clamp(0.8125rem, 0.79rem + 0.1vw,  0.875rem);
-  --fs-body:    clamp(0.9375rem, 0.9rem  + 0.18vw, 1.0625rem);
-  --fs-lead:    clamp(1.125rem,  1rem    + 0.7vw,  1.5rem);
-  --fs-h3:      clamp(1.125rem,  1rem    + 0.6vw,  1.5rem);
-  --fs-h2:      clamp(1.75rem,   1.3rem  + 2.2vw,  3rem);
-  --fs-product: clamp(2rem,      1.2rem  + 4vw,    4.25rem);
+  --fs-micro:   clamp(0.75rem, 0.73rem + 0.08vw, 0.8125rem);
+  --fs-small:   clamp(0.875rem, 0.84rem + 0.12vw, 0.9375rem);
+  --fs-body:    clamp(1rem, 0.96rem + 0.22vw, 1.0625rem);
+  --fs-lead:    clamp(1.25rem, 1.1rem + 0.78vw, 1.6875rem);
+  --fs-h3:      clamp(1.25rem, 1.1rem + 0.68vw, 1.6875rem);
+  --fs-h2:      clamp(1.875rem, 1.4rem + 2.4vw, 3.25rem);
+  --fs-product: clamp(4.5rem, 6.5vw, 7.5rem);
+  --fs-product-desc: clamp(1.125rem, 1rem + 0.5vw, 1.3125rem);
   --fs-cta:     clamp(1.75rem,   0.95rem + 2vw,    3rem);
   --fs-hero:    clamp(2.75rem,   1.2rem  + 7.2vw,  7rem);
 
@@ -88,8 +89,10 @@
   --space-3xl: clamp(5.5rem, 11vw, 10rem);
 
   /* Layout ---------------------------------------------------------- */
-  --container:  84rem;
-  --gutter:     clamp(1.125rem, 4vw, 4rem);
+  --container-max:   100rem;
+  --container-inset: clamp(1.5rem, 3vw, 3rem);
+  --container:       var(--container-max);
+  --gutter:          clamp(1.125rem, 1.5vw, 2rem);
   --header-h:   3.875rem;
   --rule:       1px solid var(--color-border);
 
@@ -186,8 +189,8 @@ button {
 /* 03  Layout primitives =================================================== */
 
 .container {
-  width: 100%;
-  max-width: var(--container);
+  width: min(var(--container-max), calc(100% - var(--container-inset)));
+  max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -268,7 +271,7 @@ main:focus { outline: none; }
   gap: var(--space-s) var(--space-m);
   width: 100%;
   /* Same axis as .container's text column, at every width. */
-  max-width: calc(var(--container) - var(--gutter) * 2);
+  max-width: calc(var(--container-max) - var(--gutter) * 2);
   margin-inline: auto;
   min-height: var(--header-h);
   padding: 0.8125rem var(--space-s);
@@ -305,7 +308,7 @@ main:focus { outline: none; }
   flex: 1 1 auto;
   min-width: 0;
   font-family: var(--font-mono);
-  font-size: clamp(0.625rem, 0.56rem + 0.3vw, 0.8125rem);
+  font-size: clamp(0.6875rem, 0.62rem + 0.32vw, 0.875rem);
   font-weight: 400;
   letter-spacing: 0.085em;
   text-transform: uppercase;
@@ -478,6 +481,10 @@ main:focus { outline: none; }
 
 .products .section-head { margin-bottom: var(--space-l); }
 
+.products .section-title {
+  font-size: clamp(2.5rem, 1.8rem + 3vw, 3.75rem);
+}
+
 /* The bottom actions now follow this section directly, so the join is a step
    rather than a full section break. */
 .products { padding-bottom: var(--space-xl); }
@@ -520,16 +527,30 @@ main:focus { outline: none; }
 
 .product__index  { grid-area: index; color: var(--color-text-muted); }
 .product__media  { grid-area: media; margin: 0; }
-.product__heading { grid-area: title; }
-.product__desc   { grid-area: desc; color: var(--color-text-2); max-width: 40ch; }
+.product__heading {
+  grid-area: title;
+  min-width: 0;
+  max-width: none;
+}
+.product__desc {
+  grid-area: desc;
+  color: var(--color-text-2);
+  max-width: 46ch;
+  font-size: var(--fs-product-desc);
+  line-height: 1.48;
+  letter-spacing: var(--tracking-tight);
+}
 
 .product__title {
   font-size: var(--fs-product);
   font-weight: 400;
-  letter-spacing: var(--tracking-product);
-  line-height: 0.92;
+  letter-spacing: -0.045em;
+  line-height: 0.94;
+  max-width: none;
   transition: transform 290ms cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.product__title-line { display: block; }
 
 /* Set by script once a preview actually becomes active. Nothing toggles it
    yet, so crossing a row with no preview moves nothing. */
@@ -622,15 +643,17 @@ main:focus { outline: none; }
 
 @media (min-width: 64rem) {
   .product {
-    grid-template-columns: minmax(0, 3fr) minmax(0, 4fr) minmax(0, 5fr);
+    grid-template-columns: minmax(0, 3fr) minmax(0, 4fr) minmax(0, 7fr);
     grid-template-rows: auto 1fr;
-    column-gap: var(--space-xl);
+    column-gap: var(--space-l);
     row-gap: var(--space-m);
     grid-template-areas:
       "desc  media title"
       "index media title";
     align-items: start;
   }
+
+  .product__title-line { white-space: nowrap; }
 }
 
 
