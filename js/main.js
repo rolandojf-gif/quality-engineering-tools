@@ -70,14 +70,23 @@
      play/pause lines here and nothing else. */
 
   var activate = function (product) {
-    product.classList.add('preview-active');
-
     var video = product.querySelector('video');
+
+    // No preview to reveal, or motion is not wanted: the row stays in its base
+    // state rather than going active over something that will never run.
     if (!video || reduceMotion.matches) { return; }
 
+    product.classList.add('preview-active');
+
     var attempt = video.play();
-    // Browsers may refuse autoplay; the poster frame is a fine fallback.
-    if (attempt && typeof attempt.catch === 'function') { attempt.catch(function () {}); }
+
+    // Browsers may still refuse autoplay; revert the row when they do.
+    if (attempt && typeof attempt.catch === 'function') {
+      attempt.catch(function () {
+        // A later activation may already be playing; only the failed one reverts.
+        if (video.paused) { product.classList.remove('preview-active'); }
+      });
+    }
   };
 
   var deactivate = function (product) {
@@ -143,6 +152,20 @@
     done.hidden = false;
     done.setAttribute('tabindex', '-1');
     done.focus();
+
+    // The flag has done its job. Drop it so a reload or a copied link does not
+    // replay the confirmation; the hash stays, so the section keeps its anchor.
+    if (window.history && typeof window.history.replaceState === 'function') {
+      var params = new URLSearchParams(window.location.search);
+      params.delete(flag.split('=')[0]);
+
+      var query = params.toString();
+      window.history.replaceState(
+        null,
+        '',
+        window.location.pathname + (query ? '?' + query : '') + window.location.hash
+      );
+    }
   };
 
   showConfirmation('demo-request=received', 'demo-form', 'demo-done');
