@@ -1,12 +1,13 @@
 /* ==========================================================================
    QUALITY ENGINEERING TOOLS — main.js
 
-   Four small jobs, no dependencies:
+   Five small jobs, no dependencies:
    1. the compact navigation menu on small screens
    2. a scrolled state on the floating masthead
    3. playback of the product preview videos
    4. swapping each request form for its confirmation after Netlify
       redirects back
+   5. recording selected high-value link clicks through Netlify Forms
 
    Everything degrades: with JavaScript disabled the page is fully readable,
    all links work, and the previews stay visible.
@@ -170,5 +171,29 @@
 
   showConfirmation('demo-request=received', 'demo-form', 'demo-done');
   showConfirmation('feedback=received', 'feedback-form', 'feedback-done');
+
+
+  /* 5  Click tracking ----------------------------------------------------- */
+
+  document.querySelectorAll('[data-track]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var body = new URLSearchParams({
+        'form-name': 'click-track',
+        event: link.getAttribute('data-track'),
+        path: window.location.pathname + window.location.hash,
+        referrer: document.referrer || 'direct'
+      });
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+        keepalive: true,
+        credentials: 'same-origin'
+      }).catch(function () {
+        // Tracking must never interfere with navigation.
+      });
+    });
+  });
 
 })();

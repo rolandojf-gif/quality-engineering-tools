@@ -29,6 +29,13 @@
 </head>
 <body>
 
+<form name="click-track" method="POST" data-netlify="true" hidden aria-hidden="true">
+  <input type="hidden" name="form-name" value="click-track">
+  <input type="hidden" name="event">
+  <input type="hidden" name="path">
+  <input type="hidden" name="referrer">
+</form>
+
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ============================================================
@@ -47,7 +54,7 @@
         <li><a href="#feedback">Feedback</a></li>
         <li><a href="https://github.com/rolandojf-gif" target="_blank" rel="noopener noreferrer">GitHub</a></li>
       </ul>
-      <a class="pill pill--action" href="#tools">Explore Tools</a>
+      <a class="pill pill--action" href="#tools" data-track="explore_tools_header">Explore Tools</a>
     </nav>
   </div>
 </header>
@@ -180,14 +187,14 @@
   <section class="cta-shell" aria-label="Next steps">
     <div class="container">
       <div class="cta-grid">
-        <a class="cta cta--one" href="#tools">
+        <a class="cta cta--one" href="#tools" data-track="explore_tools_cta">
           <span class="cta__inner">
             <span class="cta__label">Explore the Tools</span>
             <span class="cta__arrow" aria-hidden="true">&rarr;</span>
           </span>
         </a>
 
-        <a class="cta cta--two" href="#demo-access">
+        <a class="cta cta--two" href="#demo-access" data-track="demo_request_cta">
           <span class="cta__inner">
             <span class="cta__label">Request Demo Access</span>
             <span class="cta__arrow" aria-hidden="true">&rarr;</span>
@@ -487,8 +494,8 @@
       <p class="footer-copy">&copy; 2026 Quality Engineering Tools · by Rolando Fernández</p>
       <p class="footer-tagline">Independent engineering tools for automotive quality.</p>
       <ul class="footer-social">
-        <li><a class="pill" href="https://www.linkedin.com/in/rolando-fernandez-jara" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a class="pill" href="https://github.com/rolandojf-gif" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a class="pill" href="https://www.linkedin.com/in/rolando-fernandez-jara" target="_blank" rel="noopener noreferrer" data-track="linkedin_footer">LinkedIn</a></li>
+        <li><a class="pill" href="https://github.com/rolandojf-gif" target="_blank" rel="noopener noreferrer" data-track="github_footer">GitHub</a></li>
         <li><a class="pill" href="#feedback">Feedback</a></li>
       </ul>
     </div>
