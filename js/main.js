@@ -1,13 +1,11 @@
 /* ==========================================================================
    QUALITY ENGINEERING TOOLS — main.js
 
-   Five small jobs, no dependencies:
+   Four small jobs, no dependencies:
    1. the compact navigation menu on small screens
    2. a scrolled state on the floating masthead
    3. playback of the product preview videos
-   4. swapping each request form for its confirmation after Netlify
-      redirects back
-   5. recording selected high-value link clicks through Netlify Forms
+   4. recording selected high-value link clicks through Netlify Forms
 
    Everything degrades: with JavaScript disabled the page is fully readable,
    all links work, and the previews stay visible.
@@ -135,45 +133,7 @@
   });
 
 
-  /* 4  Form confirmations ------------------------------------------------- */
-
-  /* Each form posts natively to Netlify, which redirects back to the URL in
-     its own action. The only job here is to swap that form for its
-     confirmation; nothing about the submission depends on JavaScript. The
-     two flags are independent, so one never triggers the other. */
-
-  var showConfirmation = function (flag, formId, doneId) {
-    if (window.location.search.indexOf(flag) === -1) { return; }
-
-    var form = document.getElementById(formId);
-    var done = document.getElementById(doneId);
-    if (!form || !done) { return; }
-
-    form.hidden = true;
-    done.hidden = false;
-    done.setAttribute('tabindex', '-1');
-    done.focus();
-
-    // The flag has done its job. Drop it so a reload or a copied link does not
-    // replay the confirmation; the hash stays, so the section keeps its anchor.
-    if (window.history && typeof window.history.replaceState === 'function') {
-      var params = new URLSearchParams(window.location.search);
-      params.delete(flag.split('=')[0]);
-
-      var query = params.toString();
-      window.history.replaceState(
-        null,
-        '',
-        window.location.pathname + (query ? '?' + query : '') + window.location.hash
-      );
-    }
-  };
-
-  showConfirmation('demo-request=received', 'demo-form', 'demo-done');
-  showConfirmation('feedback=received', 'feedback-form', 'feedback-done');
-
-
-  /* 5  Click tracking ----------------------------------------------------- */
+  /* 4  Click tracking ----------------------------------------------------- */
 
   document.querySelectorAll('[data-track]').forEach(function (link) {
     link.addEventListener('click', function () {

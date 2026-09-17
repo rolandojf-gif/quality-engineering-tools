@@ -15,20 +15,30 @@ Current tools presented on the site:
 ## Architecture
 
 Semantic HTML, modern CSS and a small amount of vanilla JavaScript. Nothing
-else: no framework, no CSS library, no npm, no build step, no external fonts,
-scripts or trackers. The files you edit are the files that get served.
+else: no framework, no CSS library, no npm, no build step, no external fonts.
+Cloudflare Web Analytics is loaded for privacy-oriented aggregate metrics, and
+selected high-value link clicks are logged through Netlify Forms. The files
+you edit are the files that get served.
 
 ```
 .
-├── index.html        single page: header, hero, tools, philosophy, about,
-│                     future tools, bottom actions, footer
+├── index.html              single page: header, hero, tools, philosophy, about,
+│                           future tools, forms, footer
+├── demo-received.html      static confirmation page for demo access requests
+├── feedback-received.html  static confirmation page for feedback submissions
+├── privacy.html            privacy notice
 ├── css/
-│   └── styles.css    all styling; design tokens live in :root at the top
+│   └── styles.css          all styling; design tokens live in :root at the top
 ├── js/
-│   └── main.js       menu toggle, masthead scroll state, preview playback
+│   └── main.js             menu toggle, masthead scroll state, preview playback,
+│                           click tracking
 ├── assets/
-│   └── video/        the two product preview videos (MP4/H.264)
-├── netlify.toml      publish directory, security headers, cache policy
+│   └── video/              the two product preview videos (MP4/H.264)
+├── media/
+│   └── og-image.png        Open Graph social preview image
+├── netlify.toml            publish directory, security headers, cache policy
+├── robots.txt              search crawler rules
+├── sitemap.xml             sitemap
 ├── .gitignore
 └── README.md
 ```
@@ -92,11 +102,19 @@ Both previews are shipped:
 | VDA 6.3 Process Audit Copilot | `assets/video/vda-preview.mp4` | ~624 KB |
 | AIAG-VDA SPC Interactive Guide | `assets/video/spc-preview.mp4` | ~617 KB |
 
-Each sits inside its product row's `.media-frame`, directly after the ghost
-glyph, as the second and upper layer:
+Each sits inside its product row's `.media-frame`, directly after the quiet
+geometric SVG glyph mark, as the second and upper layer:
 
 ```html
-<span class="media-frame__glyph" aria-hidden="true">V</span>
+<span class="media-frame__glyph" aria-hidden="true">
+  <svg viewBox="0 0 112 50" fill="currentColor" aria-hidden="true" focusable="false">
+    <rect x="4" y="14" width="22" height="22"/>
+    <rect x="26" y="23" width="6" height="4"/>
+    <rect x="32" y="10" width="30" height="30"/>
+    <rect x="62" y="23" width="6" height="4"/>
+    <rect x="68" y="6" width="38" height="38"/>
+  </svg>
+</span>
 
 <video
   class="media-frame__video"
@@ -183,9 +201,10 @@ the identity.
 - Semantic landmarks (`header`, `main`, `nav`, `section`, `footer`) with
   labelled sections, and a skip link to `#main`.
 - Visible focus ring on every interactive element via `:focus-visible`.
-- Hover is never the only route to content: previews sit at reduced opacity on
-  pointer devices only, and resolve on hover **or** keyboard focus. On touch
-  devices they are always fully visible.
+- Hover is never the only route to content: the base state displays a quiet
+  geometric SVG glyph; on fine-pointer devices, video previews activate on
+  hover or keyboard focus; on touch devices, an IntersectionObserver activates
+  video playback while the row is on screen.
 - `prefers-reduced-motion: reduce` removes transitions, transforms and smooth
   scrolling, and suppresses video autoplay.
 - All 21 text/background combinations on the page meet WCAG AA; the lowest
@@ -203,18 +222,20 @@ Checked in a Chromium browser against this exact markup:
 - no horizontal overflow at 320, 360, 375, 414, 480, 600, 768, 834, 1024, 1280,
   1440 and 1920px, and no element crossing the viewport edge at any of them;
 - the three product layouts (stacked / tablet / three-column) switch at the
-  expected widths, and previews sit at full opacity wherever hover is absent;
+  expected widths, and previews activate via IntersectionObserver on touch screens;
 - the bottom actions stack at or below 1023px and sit side by side at equal
   height from 1024px up, with no label wrapping at any tested width;
 - keyboard order — skip link, brand, Tools, About, GitHub, Explore Tools — each
   with a visible focus ring; Escape closes the small-screen menu and returns
   focus to the toggle;
-- the preview reveal (opacity 0.55 → 1, scale 0.985 → 1) under `:focus-within`,
-  which is the same rule that handles `:hover`;
+- the preview reveal (opacity 0 → 1, scale 0.985 → 1, video play) managed via
+  `.product.preview-active` on hover, focusin, and intersection;
 - `prefers-reduced-motion: reduce` forced on: transitions drop to ~0s, the
   preview scale and CTA arrow shift are removed, smooth scrolling is disabled;
-- a clean load with no console errors and no requests beyond the page, the
-  stylesheet and the script.
+- a clean load with no console errors, and external requests restricted to the
+  privacy-oriented Cloudflare Web Analytics beacon (`beacon.min.js`);
+- native form submission routes to static confirmation pages (`/demo-received.html`,
+  `/feedback-received.html`) without requiring JavaScript.
 
 ## Browser support
 

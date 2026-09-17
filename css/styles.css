@@ -729,6 +729,16 @@ main:focus { outline: none; }
   color: var(--color-text-2);
 }
 
+.prose a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.prose a:hover { color: var(--color-text); }
+
+
 
 /* 11  Future tools ======================================================== */
 
@@ -1015,6 +1025,22 @@ main:focus { outline: none; }
   max-width: 46ch;
 }
 
+.form__privacy {
+  grid-column: 1 / -1;
+  font-size: var(--fs-micro);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.form__privacy a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.form__privacy a:hover { color: var(--color-text); }
+
 @media (min-width: 48rem) {
   .form {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1022,7 +1048,8 @@ main:focus { outline: none; }
   }
 
   .field--wide,
-  .form__actions { grid-column: 1 / -1; }
+  .form__actions,
+  .form__privacy { grid-column: 1 / -1; }
 
   .choices {
     grid-template-columns: repeat(3, minmax(0, 1fr));
