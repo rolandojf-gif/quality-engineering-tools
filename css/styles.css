@@ -1287,7 +1287,9 @@ main:focus { outline: none; }
 
 /* These selectors only appear on detail pages; the landing keeps its original
    composition while both new pages share the same product tokens. */
-.tool-page .section { padding-block: var(--space-2xl); }
+.tool-page .section { padding-block: var(--space-xl); }
+/* Preserve the hero's existing composition; tighten only the content sections. */
+.tool-page .section:not(.tool-hero) { padding-block: 3rem; }
 .tool-page__nav {
   padding-top: var(--space-2xl);
   border-bottom: var(--rule);
@@ -1422,7 +1424,7 @@ main:focus { outline: none; }
   display: grid;
   grid-template-columns: minmax(4rem, 1fr) minmax(0, 3fr);
   gap: var(--space-l);
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-xl);
 }
 
 .tool-section__index {
@@ -1725,7 +1727,6 @@ body.lightbox-open { overflow: hidden; }
 }
 
 @media (min-width: 64rem) {
-  .tool-page .section { padding-block: var(--space-3xl); }
   .tool-hero { padding-top: var(--space-3xl); }
   .capability-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .tool-copy { padding-left: 0; }
