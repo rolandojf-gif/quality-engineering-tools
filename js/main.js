@@ -1,11 +1,12 @@
 /* ==========================================================================
    QUALITY ENGINEERING TOOLS — main.js
 
-   Four small jobs, no dependencies:
+   Five small jobs, no dependencies:
    1. the compact navigation menu on small screens
    2. a scrolled state on the floating masthead
    3. playback of the product preview videos
-   4. recording selected high-value link clicks through Netlify Forms
+   4. gallery thumbnails and the enlarged image lightbox
+   5. recording selected high-value link clicks through Netlify Forms
 
    Everything degrades: with JavaScript disabled the page is fully readable,
    all links work, and the previews stay visible.
@@ -109,8 +110,7 @@
         deactivate(product);
       });
 
-      // No row is focusable yet; these start working on their own the day a
-      // product title becomes a link, with no tabindex added for show.
+      // Product titles are now links, so keyboard focus reveals the preview.
       product.addEventListener('focusin', function () { activate(product); });
 
       product.addEventListener('focusout', function (event) {
@@ -133,7 +133,92 @@
   });
 
 
-  /* 4  Click tracking ----------------------------------------------------- */
+  /* 4  Gallery lightbox ---------------------------------------------------- */
+
+  var gallery = document.querySelector('[data-gallery]');
+  var lightbox = document.getElementById('tool-lightbox');
+
+  if (gallery && lightbox) {
+    var galleryItems = Array.prototype.slice.call(gallery.querySelectorAll('[data-gallery-index]'));
+    var lightboxImage = document.getElementById('lightbox-image');
+    var lightboxTitle = document.getElementById('lightbox-title');
+    var lightboxSource = document.getElementById('lightbox-source');
+    var lightboxCounter = document.getElementById('lightbox-counter');
+    var lightboxTrigger = null;
+    var lightboxIndex = 0;
+
+    var renderLightbox = function (index) {
+      var item = galleryItems[index];
+      if (!item) return;
+
+      lightboxIndex = index;
+      lightboxImage.src = item.getAttribute('data-full');
+      lightboxImage.alt = item.querySelector('img').getAttribute('alt') || '';
+      lightboxTitle.textContent = item.getAttribute('data-title') || 'Product preview';
+      lightboxSource.textContent = item.getAttribute('data-source') || 'Real product preview frame';
+      lightboxCounter.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(galleryItems.length).padStart(2, '0');
+    };
+
+    var openLightbox = function (index, trigger) {
+      lightboxTrigger = trigger || document.activeElement;
+      renderLightbox(index);
+      document.body.classList.add('lightbox-open');
+      // The authored `hidden` attribute keeps the dialog out of the tab order
+      // before first use; remove it before asking the browser to show the modal.
+      lightbox.removeAttribute('hidden');
+      if (typeof lightbox.showModal === 'function') {
+        lightbox.showModal();
+      } else {
+        lightbox.setAttribute('open', '');
+      }
+    };
+
+    var closeLightbox = function () {
+      if (typeof lightbox.close === 'function') {
+        lightbox.close();
+      } else {
+        lightbox.removeAttribute('open');
+        lightbox.setAttribute('hidden', '');
+      }
+      document.body.classList.remove('lightbox-open');
+      if (lightboxTrigger && typeof lightboxTrigger.focus === 'function') lightboxTrigger.focus();
+    };
+
+    var stepLightbox = function (direction) {
+      renderLightbox((lightboxIndex + direction + galleryItems.length) % galleryItems.length);
+    };
+
+    galleryItems.forEach(function (item, index) {
+      item.addEventListener('click', function () { openLightbox(index, item); });
+    });
+
+    lightbox.querySelector('[data-lightbox-close]').addEventListener('click', closeLightbox);
+    lightbox.querySelector('[data-lightbox-prev]').addEventListener('click', function () { stepLightbox(-1); });
+    lightbox.querySelector('[data-lightbox-next]').addEventListener('click', function () { stepLightbox(1); });
+
+    lightbox.addEventListener('click', function (event) {
+      // Clicking the backdrop closes; clicks inside the window do not.
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    lightbox.addEventListener('close', function () {
+      document.body.classList.remove('lightbox-open');
+      lightbox.setAttribute('hidden', '');
+      if (lightboxTrigger && typeof lightboxTrigger.focus === 'function') lightboxTrigger.focus();
+    });
+
+    lightbox.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeLightbox();
+        return;
+      }
+      if (event.key === 'ArrowLeft') stepLightbox(-1);
+      if (event.key === 'ArrowRight') stepLightbox(1);
+    });
+  }
+
+
+  /* 5  Click tracking ----------------------------------------------------- */
 
   document.querySelectorAll('[data-track]').forEach(function (link) {
     link.addEventListener('click', function () {

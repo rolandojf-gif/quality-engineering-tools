@@ -5,9 +5,9 @@ building practical digital tools for automotive quality engineering.
 
 Current tools presented on the site:
 
-1. **VDA 6.3:2023 Process Audit Copilot** — prepare, conduct and evaluate
-   VDA 6.3:2023 process audits.
-2. **AIAG-VDA SPC Interactive Guide** — interactive guidance for statistical
+1. **VDA 6.3:2023 Process Audit Copilot** — a structured workspace for
+   preparing, conducting and evaluating process audits.
+2. **AIAG-VDA SPC Interactive Guide** — an interactive guide for statistical
    process control, process stability and capability analysis.
 
 ---
@@ -22,8 +22,14 @@ you edit are the files that get served.
 
 ```
 .
-├── index.html              single page: header, hero, tools, philosophy, about,
-│                           future tools, forms, footer
+├── index.html              landing page: header, hero, tools, philosophy,
+│                           about, future tools, forms, footer
+├── tools/
+│   ├── vda-6-3-process-audit-copilot.html
+│   └── aiag-vda-spc-guide.html
+├── assets/
+│   ├── video/              the two product preview videos (MP4/H.264)
+│   └── screenshots/        real preview frames used by the tool galleries
 ├── demo-received.html      static confirmation page for demo access requests
 ├── feedback-received.html  static confirmation page for feedback submissions
 ├── privacy.html            privacy notice
@@ -31,9 +37,7 @@ you edit are the files that get served.
 │   └── styles.css          all styling; design tokens live in :root at the top
 ├── js/
 │   └── main.js             menu toggle, masthead scroll state, preview playback,
-│                           click tracking
-├── assets/
-│   └── video/              the two product preview videos (MP4/H.264)
+│                           gallery lightbox and click tracking
 ├── media/
 │   └── og-image.png        Open Graph social preview image
 ├── netlify.toml            publish directory, security headers, cache policy
@@ -73,25 +77,17 @@ netlify deploy --prod
 
 ---
 
-## Placeholders to replace before going public
+## The product pages and previews
 
-Search the repository for `REPLACE-ME`:
+The landing product titles and `Explore the tool` actions link to the two pages
+in `tools/`. The header, lower CTA and form-related pages retain the existing
+landing navigation, so a visitor can move from the landing to the tool list and
+from either tool page back to the landing.
 
-| Where | What |
-| --- | --- |
-
-The GitHub links already point at `https://github.com/rolandojf-gif`.
-
-When each tool gets a public URL, wrap its heading text in a link:
-
-```html
-<h3 class="product__title">
-  <a class="product__link" href="https://…">VDA 6.3<br>Process Audit<br>Copilot</a>
-</h3>
-```
-
-`.product__link` is already styled, and keyboard focus on that link reveals the
-product preview exactly as hovering the row does.
+The gallery images in `assets/screenshots/` are extracted from the two shipped
+preview videos. They are the real visual assets used for the product pages,
+not synthetic mock-ups. Keep their filenames and relative paths in sync if a
+preview is replaced.
 
 ## The product preview videos
 
@@ -155,6 +151,26 @@ Replacing or adding one is just a matter of dropping the file into
 
 Activation is one shared state, `.product.preview-active`, which also drives
 the full-width warm row background and the +14px product-title shift.
+
+## Dedicated tool pages
+
+The landing remains the main page. Each tool now has a dedicated page:
+
+- `tools/vda-6-3-process-audit-copilot.html`
+- `tools/aiag-vda-spc-guide.html`
+
+Both pages reuse `css/styles.css` and `js/main.js`. They include an Overview,
+What it helps you do, How it works, Key capabilities and Gallery structure, plus
+a persistent return link to `../`. The gallery thumbnails are real JPEG frames
+from the shipped preview videos; there are no invented screenshots. Opening a
+thumbnail uses the shared native-dialog lightbox, with close, backdrop click,
+Escape, arrow-key navigation and focus restoration.
+
+The two landing product titles and the `Explore the tool` actions are real
+internal links to these pages. The header and lower CTA still lead to the
+existing `#tools` section, so the requested landing → tools → tool page → back
+navigation is available without changing the site's overall information
+architecture.
 
 ## Design system
 
@@ -225,11 +241,13 @@ Checked in a Chromium browser against this exact markup:
   expected widths, and previews activate via IntersectionObserver on touch screens;
 - the bottom actions stack at or below 1023px and sit side by side at equal
   height from 1024px up, with no label wrapping at any tested width;
-- keyboard order — skip link, brand, Tools, About, GitHub, Explore Tools — each
-  with a visible focus ring; Escape closes the small-screen menu and returns
-  focus to the toggle;
+- keyboard order — skip link, brand, Tools, About, GitHub, Explore the tools —
+  each with a visible focus ring; Escape closes the small-screen menu and
+  returns focus to the toggle;
 - the preview reveal (opacity 0 → 1, scale 0.985 → 1, video play) managed via
   `.product.preview-active` on hover, focusin, and intersection;
+- dedicated tool pages, their internal navigation, and gallery lightbox open /
+  close / previous / next / Escape behaviour;
 - `prefers-reduced-motion: reduce` forced on: transitions drop to ~0s, the
   preview scale and CTA arrow shift are removed, smooth scrolling is disabled;
 - a clean load with no console errors, and external requests restricted to the

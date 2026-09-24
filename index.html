@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>Quality Engineering Tools — Practical tools for automotive quality engineering</title>
-<meta name="description" content="Practical digital tools for automotive quality engineering. Interactive applications built around VDA 6.3:2023 process auditing and AIAG-VDA statistical process control.">
+<title>Quality Engineering Tools — VDA 6.3 Copilot &amp; AIAG-VDA SPC Guide</title>
+<meta name="description" content="Explore two independent engineering tools: VDA 6.3:2023 Process Audit Copilot for audit preparation and AIAG-VDA SPC Guide for process stability and capability analysis.">
 <meta name="theme-color" content="#f8f8f6">
 <meta name="google-site-verification" content="yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk">
 <link rel="canonical" href="https://quality-engineering-tools.netlify.app/">
 
 <!-- Open Graph / social preview. -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Quality Engineering Tools">
-<meta property="og:description" content="Practical digital tools for automotive quality engineering.">
+<meta property="og:title" content="Quality Engineering Tools — VDA 6.3 Copilot &amp; AIAG-VDA SPC Guide">
+<meta property="og:description" content="Explore practical VDA 6.3 process-audit and AIAG-VDA SPC engineering tools.">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://quality-engineering-tools.netlify.app/">
 <meta property="og:image" content="https://quality-engineering-tools.netlify.app/media/og-image.png">
@@ -55,7 +55,7 @@
         <li><a href="#feedback">Feedback</a></li>
         <li><a href="https://github.com/rolandojf-gif" target="_blank" rel="noopener noreferrer">GitHub</a></li>
       </ul>
-      <a class="pill pill--action" href="#tools" data-track="explore_tools_header">Explore Tools</a>
+      <a class="pill pill--action" href="#tools" data-track="explore_tools_header">Explore the tools</a>
     </nav>
   </div>
 </header>
@@ -67,15 +67,20 @@
        HERO
        ============================================================ -->
   <section class="hero" id="top" aria-labelledby="hero-title">
-    <div class="container">
-      <h1 class="hero__title" id="hero-title">Quality Engineering<br>Tools</h1>
+    <div class="container hero__layout">
+      <div class="hero__content">
+        <h1 class="hero__title" id="hero-title">Quality Engineering<br>Tools</h1>
 
-      <div class="hero__body">
-        <p class="hero__lead">Practical digital tools for automotive quality engineering.</p>
-        <p class="hero__note">Interactive engineering applications built around established industry standards and real quality workflows.</p>
-      </div>
+        <div class="hero__body">
+          <p class="hero__lead">Practical digital tools for automotive quality engineering.</p>
+          <p class="hero__note">Interactive engineering applications built around established industry standards and real quality workflows.</p>
+          <a class="hero__explore" href="#tools" data-track="explore_tools_hero">
+            <span>Explore the tools</span>
+            <span class="hero__explore-arrow" aria-hidden="true">&darr;</span>
+          </a>
+        </div>
 
-      <dl class="hero__meta">
+        <dl class="hero__meta">
         <div class="hero__meta-item">
           <dt>Standard</dt>
           <dd>VDA 6.3:2023</dd>
@@ -89,6 +94,50 @@
           <dd>Independent</dd>
         </div>
       </dl>
+      </div>
+
+      <figure class="hero-drawing" aria-label="Technical line drawing of a vernier caliper measuring a cylindrical part">
+        <svg viewBox="0 0 680 560" role="img" aria-labelledby="caliper-title caliper-desc">
+          <title id="caliper-title">Vernier caliper technical drawing</title>
+          <desc id="caliper-desc">Minimal line drawing of a vernier caliper positioned across a cylindrical measured part, with construction lines and scale marks.</desc>
+          <g class="hero-drawing__grid" aria-hidden="true">
+            <path d="M40 80H640M40 160H640M40 240H640M40 320H640M40 400H640M40 480H640"/>
+            <path d="M80 40V520M160 40V520M240 40V520M320 40V520M400 40V520M480 40V520M560 40V520"/>
+          </g>
+          <g class="hero-drawing__object">
+            <path d="M205 291C205 238 251 205 334 205S463 238 463 291 417 377 334 377 205 344 205 291Z"/>
+            <path d="M205 291H463M230 267C260 279 295 284 334 284s74-5 104-17M230 315c30-12 65-17 104-17s74 5 104 17"/>
+            <path d="M334 205V377" stroke-dasharray="6 8"/>
+            <path class="hero-drawing__dimension" d="M172 214V368M164 222l8-8 8 8M164 360l8 8 8-8"/>
+            <text x="146" y="298">&#216;</text>
+          </g>
+          <g class="hero-drawing__caliper">
+            <path d="M156 263H518V337H156z"/>
+            <path d="M187 263V337M221 263V337M255 263V337M289 263V337M323 263V337M357 263V337M391 263V337M425 263V337M459 263V337M493 263V337"/>
+            <path d="M174 274H218M204 282H250M174 290H218M204 298H250M174 306H218M204 314H250M174 322H218M204 330H250"/>
+            <path d="M292 263H337V337H292z"/>
+            <path d="M300 275H329M300 285H329M300 295H329M300 305H329M300 315H329M300 325H329"/>
+            <path d="M282 274H298M278 288H298M282 302H298M278 316H298M282 330H298"/>
+            <path d="M170 240V222H204V240M425 240V222H490V240M170 360V378H204V360M425 360V378H490V360"/>
+            <path class="hero-drawing__slider" d="M238 250H418V350H238z"/>
+            <path d="M256 264H400M256 336H400"/>
+            <circle cx="257" cy="300" r="7"/>
+            <path d="M244 283H270M244 317H270"/>
+          </g>
+          <g class="hero-drawing__callouts" aria-hidden="true">
+            <path d="M518 300H584M584 300l-8-4M584 300l-8 4"/>
+            <text x="596" y="294">VERNIER</text>
+            <text x="596" y="316">0.01 mm</text>
+            <path d="M230 205V163H177M230 379V425H169"/>
+            <text x="46" y="154">MEASURED FEATURE</text>
+            <text x="42" y="445">REFERENCE DATUM</text>
+          </g>
+        </svg>
+        <figcaption>
+          <span class="hero-drawing__index">/METROLOGY</span>
+          <span>Measure. Interpret. Decide.</span>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -139,16 +188,20 @@
         </figure>
 
         <div class="product__heading">
-          <!-- When the tool has a public URL, wrap this heading text in
-               <a class="product__link" href="…">…</a> — the styles already
-               cover .product__link, and keyboard focus will reveal the preview. -->
           <h3 class="product__title">
-            <span class="product__title-line">VDA 6.3 Process</span>
-            <span class="product__title-line">Audit Copilot</span>
+            <a class="product__link" href="tools/vda-6-3-process-audit-copilot.html" data-track="vda_tool_open">
+              <span class="product__title-line">VDA 6.3 Process</span>
+              <span class="product__title-line">Audit Copilot</span>
+            </a>
           </h3>
         </div>
 
-        <p class="product__desc">Prepare, conduct and evaluate VDA 6.3:2023 process audits.</p>
+        <p class="product__desc">Turn process-audit preparation, execution and evaluation into one traceable workflow—without losing professional judgement.</p>
+
+        <a class="product__cta" href="tools/vda-6-3-process-audit-copilot.html" data-track="vda_tool_explore">
+          <span>Explore the tool</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
 
         <p class="product__index">/0.1</p>
       </article>
@@ -185,11 +238,18 @@
         </figure>
 
         <div class="product__heading">
-          <h3 class="product__title">AIAG-VDA<br>SPC</h3>
+          <h3 class="product__title">
+            <a class="product__link" href="tools/aiag-vda-spc-guide.html" data-track="spc_tool_open">AIAG-VDA<br>SPC</a>
+          </h3>
           <p class="product__subtitle">Interactive Guide</p>
         </div>
 
-        <p class="product__desc">Interactive guidance for statistical process control, process stability and capability analysis.</p>
+        <p class="product__desc">Connect data, control charts, stability evidence and capability indices in a practical guide to sound process decisions.</p>
+
+        <a class="product__cta" href="tools/aiag-vda-spc-guide.html" data-track="spc_tool_explore">
+          <span>Explore the tool</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
 
         <p class="product__index">/0.2</p>
       </article>
@@ -205,7 +265,7 @@
       <div class="cta-grid">
         <a class="cta cta--one" href="#tools" data-track="explore_tools_cta">
           <span class="cta__inner">
-            <span class="cta__label">Explore the Tools</span>
+            <span class="cta__label">Explore the tools</span>
             <span class="cta__arrow" aria-hidden="true">&rarr;</span>
           </span>
         </a>
@@ -511,8 +571,8 @@
     <nav class="footer-col" aria-labelledby="footer-tools">
       <h2 class="footer-col__title" id="footer-tools">Tools</h2>
       <ul class="footer-list">
-        <li><a href="#tools">VDA 6.3 Process Audit Copilot</a></li>
-        <li><a href="#tools">AIAG-VDA SPC Interactive Guide</a></li>
+        <li><a href="tools/vda-6-3-process-audit-copilot.html">VDA 6.3 Process Audit Copilot</a></li>
+        <li><a href="tools/aiag-vda-spc-guide.html">AIAG-VDA SPC Interactive Guide</a></li>
       </ul>
     </nav>
 
