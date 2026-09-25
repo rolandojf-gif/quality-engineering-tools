@@ -927,6 +927,113 @@ main:focus { outline: none; }
 }
 
 
+/* Other projects ------------------------------------------------------- */
+
+/* Kept deliberately separate from the engineering product grid: this is an
+   editorial list, not another tool card. */
+.other-projects {
+  padding-block: var(--space-xl);
+  background-color: var(--color-surface);
+}
+
+.other-projects__head {
+  display: grid;
+  gap: var(--space-m);
+  margin-bottom: var(--space-xl);
+}
+
+.other-projects__eyebrow { padding-top: 0; }
+.other-projects__heading .section-lead { margin-top: var(--space-m); }
+
+.other-projects__list {
+  border-top: var(--rule);
+}
+
+.other-project {
+  display: grid;
+  gap: var(--space-l);
+  padding-block: var(--space-l);
+  border-bottom: var(--rule);
+}
+
+.other-project__intro {
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+}
+
+.other-project__index {
+  color: var(--color-text-muted);
+}
+
+.other-project__title {
+  font-size: clamp(2rem, 1.5rem + 2.5vw, 4rem);
+  letter-spacing: var(--tracking-display);
+}
+
+.other-project__body {
+  display: grid;
+  align-content: start;
+  gap: var(--space-m);
+}
+
+.other-project__desc {
+  max-width: 50ch;
+  color: var(--color-text-2);
+  font-size: var(--fs-lead);
+  line-height: 1.35;
+  letter-spacing: var(--tracking-tight);
+}
+
+.other-project__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s) var(--space-l);
+}
+
+.other-project__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-s);
+  width: fit-content;
+  padding: 0;
+  border-bottom: 1px solid var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  letter-spacing: var(--tracking-tight);
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.other-project__cta:hover { border-bottom-color: var(--color-text-muted); }
+.other-project__cta span { font-size: 1rem; transition: transform var(--dur-fast) var(--ease); }
+.other-project__cta:hover span { transform: translateX(4px); }
+
+.other-project__source {
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+  text-underline-offset: 0.2em;
+  transition: color var(--dur-fast) var(--ease), text-decoration-color var(--dur-fast) var(--ease);
+}
+
+.other-project__source:hover { color: var(--color-text); text-decoration-color: var(--color-text); }
+
+@media (min-width: 48rem) {
+  .other-projects__head {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    gap: var(--space-xl);
+  }
+
+  .other-project {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-xl);
+  }
+}
+
+
 /* 12  Bottom CTA ========================================================== */
 
 /* The pair sits inside the page's own content column, framed by a rule above
