@@ -942,7 +942,7 @@ main:focus { outline: none; }
   margin-bottom: var(--space-xl);
 }
 
-.other-projects__eyebrow { padding-top: 0; }
+.other-projects__eyebrow { color: var(--color-text-2); padding-top: 0; }
 .other-projects__heading .section-lead { margin-top: var(--space-m); }
 
 .other-projects__list {
@@ -963,7 +963,7 @@ main:focus { outline: none; }
 }
 
 .other-project__index {
-  color: var(--color-text-muted);
+  color: var(--color-text-2);
 }
 
 .other-project__title {
@@ -1011,7 +1011,7 @@ main:focus { outline: none; }
 .other-project__cta:hover span { transform: translateX(4px); }
 
 .other-project__source {
-  color: var(--color-text-muted);
+  color: var(--color-text-2);
   font-size: var(--fs-small);
   text-decoration: underline;
   text-decoration-color: var(--color-border);
@@ -1668,11 +1668,8 @@ main:focus { outline: none; }
 .gallery-button img {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
-  transition: transform 420ms var(--ease), filter var(--dur-fast) var(--ease);
+  object-fit: contain;
 }
-
-.gallery-button:hover img { transform: scale(1.012); filter: contrast(1.02); }
 .gallery-button__bar {
   display: flex;
   align-items: center;
@@ -1731,7 +1728,7 @@ main:focus { outline: none; }
 .lightbox__window {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  width: min(100%, 90rem);
+  width: 100%;
   height: 100%;
   margin-inline: auto;
   background: var(--color-bg);
@@ -1786,9 +1783,12 @@ main:focus { outline: none; }
 
 .lightbox__image {
   display: block;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  object-position: center;
 }
 
 .lightbox__counter,

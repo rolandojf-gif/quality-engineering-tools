@@ -23,13 +23,17 @@
 
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('site-nav');
+  var desktopNav = window.matchMedia('(min-width: 52rem)');
 
   if (toggle && nav) {
     var setNav = function (open) {
       nav.classList.toggle('is-open', open);
+      nav.setAttribute('aria-hidden', String(!desktopNav.matches && !open));
       toggle.setAttribute('aria-expanded', String(open));
       toggle.textContent = open ? 'Close' : 'Menu';
     };
+
+    setNav(false);
 
     toggle.addEventListener('click', function () {
       setNav(!nav.classList.contains('is-open'));
@@ -44,6 +48,14 @@
       if (event.key === 'Escape' && nav.classList.contains('is-open')) {
         setNav(false);
         toggle.focus();
+      }
+    });
+
+    desktopNav.addEventListener('change', function () {
+      if (desktopNav.matches) {
+        setNav(true);
+      } else {
+        setNav(false);
       }
     });
   }
