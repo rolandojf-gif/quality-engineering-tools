@@ -30,7 +30,6 @@ you edit are the files that get served.
 ├── assets/
 │   ├── video/              the two product preview videos (MP4/H.264)
 │   └── screenshots/        real preview frames used by the tool galleries
-├── demo-received.html      static confirmation page for demo access requests
 ├── feedback-received.html  static confirmation page for feedback submissions
 ├── privacy.html            privacy notice
 ├── css/
@@ -252,8 +251,7 @@ Checked in a Chromium browser against this exact markup:
   preview scale and CTA arrow shift are removed, smooth scrolling is disabled;
 - a clean load with no console errors, and external requests restricted to the
   privacy-oriented Cloudflare Web Analytics beacon (`beacon.min.js`);
-- native form submission routes to static confirmation pages (`/demo-received.html`,
-  `/feedback-received.html`) without requiring JavaScript.
+- native form submission routes to the static confirmation page (`/feedback-received.html`) without requiring JavaScript.
 
 ## Browser support
 

@@ -16,7 +16,7 @@
    10  About
    11  Future tools
    12  Bottom CTA
-   13  Demo access form
+   13  Forms
    14  Footer
    15  Dedicated tool pages
    16  Responsive refinements
@@ -1142,7 +1142,7 @@ main:focus { outline: none; }
 }
 
 
-/* 13  Demo access form ==================================================== */
+/* 13  Forms ==================================================== */
 
 .demo-body {
   display: grid;

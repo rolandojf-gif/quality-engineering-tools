@@ -270,9 +270,9 @@
           </span>
         </a>
 
-        <a class="cta cta--two" href="#demo-access" data-track="demo_request_cta">
+        <a class="cta cta--two" href="#feedback" data-track="feedback_cta">
           <span class="cta__inner">
-            <span class="cta__label">Request Demo Access</span>
+            <span class="cta__label">Send feedback</span>
             <span class="cta__arrow" aria-hidden="true">&rarr;</span>
           </span>
         </a>
@@ -422,94 +422,8 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       DEMO ACCESS — Netlify form
-       ============================================================ -->
-  <section class="section demo" id="demo-access" aria-labelledby="demo-title">
-    <div class="container">
-
-      <header class="section-head">
-        <p class="section-index">/05</p>
-        <div class="section-head__text">
-          <h2 class="section-title" id="demo-title">48-Hour<br>Demo Access</h2>
-          <p class="section-lead">Try the Quality Engineering Tools with temporary 48-hour access. Choose the tool you want to evaluate and request a temporary access link.</p>
-        </div>
-      </header>
-
-      <div class="demo-body">
-        <p class="demo-note">Demo access is provided through a temporary link valid for 48 hours.</p>
-
-        <form
-          class="form"
-          id="demo-form"
-          name="demo-access"
-          method="POST"
-          action="/demo-received"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-        >
-          <!-- Netlify needs the form name posted with the body too. -->
-          <input type="hidden" name="form-name" value="demo-access">
-
-          <p class="form__honeypot" hidden>
-            <label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label>
-          </p>
-
-          <p class="field">
-            <label class="field__label" for="demo-name">Name <span class="field__req" aria-hidden="true">*</span></label>
-            <input class="field__input" type="text" id="demo-name" name="name" autocomplete="name" required>
-          </p>
-
-          <p class="field">
-            <label class="field__label" for="demo-email">Work email <span class="field__req" aria-hidden="true">*</span></label>
-            <input class="field__input" type="email" id="demo-email" name="email" autocomplete="email" required>
-          </p>
-
-          <p class="field field--wide">
-            <label class="field__label" for="demo-company">Company</label>
-            <input class="field__input" type="text" id="demo-company" name="company" autocomplete="organization">
-          </p>
-
-          <fieldset class="field field--wide field--choice">
-            <legend class="field__label">Tool <span class="field__req" aria-hidden="true">*</span></legend>
-            <div class="choices">
-              <label class="choice">
-                <input type="radio" name="tool" value="VDA 6.3 Process Audit Copilot" required>
-                <span>VDA 6.3 Process Audit Copilot</span>
-              </label>
-              <label class="choice">
-                <input type="radio" name="tool" value="AIAG-VDA SPC Interactive Guide">
-                <span>AIAG-VDA SPC Interactive Guide</span>
-              </label>
-              <label class="choice">
-                <input type="radio" name="tool" value="Both tools">
-                <span>Both tools</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <p class="field field--wide">
-            <label class="field__label" for="demo-message">Message</label>
-            <textarea class="field__input field__input--area" id="demo-message" name="message" rows="4"></textarea>
-          </p>
-
-          <div class="form__actions">
-            <p class="form__required">* Required</p>
-            <button class="form__submit" type="submit">
-              <span>Request access</span>
-              <span class="form__submit-arrow" aria-hidden="true">&rarr;</span>
-            </button>
-          </div>
-
-          <p class="form__privacy">By submitting this form, you acknowledge the <a href="privacy.html">Privacy Notice</a>.</p>
-        </form>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================================
-       FEEDBACK — second, independent Netlify form
+<!-- ============================================================
+       FEEDBACK — Netlify form
        ============================================================ -->
   <section class="section feedback" id="feedback" aria-labelledby="feedback-title">
     <div class="container">
