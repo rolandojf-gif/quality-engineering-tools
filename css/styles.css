@@ -874,6 +874,30 @@ main:focus { outline: none; }
 
 .about .section-head { margin-bottom: 0; }
 
+.about-support {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-m);
+  margin-top: var(--space-l);
+  padding: var(--space-m) var(--space-l);
+  border: var(--rule);
+  border-radius: 2px;
+  background-color: var(--color-hover-tint);
+}
+
+.about-support p {
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: var(--fs-small);
+}
+
+.about-support__button {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+  font-weight: 600;
+}
+
 .prose {
   display: grid;
   gap: var(--space-m);
