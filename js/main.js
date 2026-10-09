@@ -113,18 +113,30 @@
     try { video.currentTime = 0; } catch (error) { /* not seekable yet */ }
   };
 
+  var activateOnly = function (product) {
+    // One preview at a time. Entering a row, by pointer or by keyboard,
+    // ends whatever other row was running — including one that still holds
+    // focus after a click opened another tab. Otherwise that row's
+    // mouseleave guard keeps its video up and two previews play at once.
+    document.querySelectorAll('.product').forEach(function (other) {
+      if (other !== product) { deactivate(other); }
+    });
+    activate(product);
+  };
+
   document.querySelectorAll('.product').forEach(function (product) {
     if (finePointer.matches) {
-      product.addEventListener('mouseenter', function () { activate(product); });
+      product.addEventListener('mouseenter', function () { activateOnly(product); });
 
       product.addEventListener('mouseleave', function () {
-        // Keyboard focus inside the row outranks the pointer leaving it.
+        // Keyboard focus inside the row outranks the pointer leaving it,
+        // until the pointer enters a different row (handled above).
         if (product.contains(document.activeElement)) { return; }
         deactivate(product);
       });
 
       // Product titles are now links, so keyboard focus reveals the preview.
-      product.addEventListener('focusin', function () { activate(product); });
+      product.addEventListener('focusin', function () { activateOnly(product); });
 
       product.addEventListener('focusout', function (event) {
         if (!product.contains(event.relatedTarget)) { deactivate(product); }
