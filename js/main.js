@@ -84,11 +84,12 @@
   var activate = function (product) {
     var video = product.querySelector('video');
 
-    // No preview to reveal, or motion is not wanted: the row stays in its base
-    // state rather than going active over something that will never run.
-    if (!video || reduceMotion.matches) { return; }
+    // Respect reduced motion for all rows. Rows without video can still
+    // animate their title and background on hover or keyboard focus.
+    if (reduceMotion.matches) { return; }
 
     product.classList.add('preview-active');
+    if (!video) { return; }
 
     var attempt = video.play();
 
