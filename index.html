@@ -269,6 +269,20 @@
                 <circle cx="77" cy="13" r="6" fill="currentColor" stroke="none"/>
               </svg>
             </span>
+
+            <!-- Overlay layer. Absolutely positioned over the glyph, so it
+                 adds no layout and fades in on opacity alone. js/main.js plays
+                 it when the row gains `preview-active`. -->
+            <video
+              class="media-frame__video"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
+            >
+              <source src="assets/video/vda20-preview.mp4" type="video/mp4">
+            </video>
           </div>
         </figure>
 
