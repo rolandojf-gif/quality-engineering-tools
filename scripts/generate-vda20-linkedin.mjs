@@ -105,16 +105,20 @@ function loadPlaywright() {
   );
 }
 
-function run(cmd, args) {
+function run(cmd, args, { captureStdout = false } = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
+    let stdout = '';
     let stderr = '';
+    child.stdout.on('data', (chunk) => {
+      stdout += chunk.toString();
+    });
     child.stderr.on('data', (chunk) => {
       stderr += chunk.toString();
     });
     child.on('error', reject);
     child.on('close', (code) => {
-      if (code === 0) resolve(stderr);
+      if (code === 0) resolve(captureStdout ? stdout : stderr);
       else reject(new Error(`${cmd} ${args.join(' ')} failed (${code})\n${stderr.slice(-4000)}`));
     });
   });
@@ -204,6 +208,11 @@ function place(frame) {
 function pinTop(frame, hero, top) {
   const next = { ...frame, y: top };
   return contains(next, hero) ? next : frame;
+}
+
+function pushIn(frame, zoom, focus, subject) {
+  const next = place(zoomAbout(frame, zoom, focus));
+  return contains(next, subject) ? next : frame;
 }
 
 function groupRows(rects) {
@@ -319,20 +328,17 @@ async function planScenes(page) {
   const critH = critW / PIC_ASPECT;
   const criteriaStart = place({
     x: lens.x - 10,
-    y: lens.y - 18,
+    y: lens.y - 72,
     w: critW,
     h: critH,
   });
   if (!contains(criteriaStart, lens)) throw new Error('Criteria camera clips the class graphic');
-  if (criteriaStart.y + criteriaStart.h < list.y + 120) {
+  if (criteriaStart.y + criteriaStart.h < list.y + 140) {
     throw new Error('Criteria camera does not reach the criteria list');
   }
-  const critPanRoom = lens.y - 10 - criteriaStart.y;
-  const criteriaEnd = place(translate(criteriaStart, 0, Math.max(24, Math.min(72, critPanRoom + 36))));
-  if (!contains(criteriaEnd, lens)) {
-    // Keep the 12 / 26 / 37 graphic on screen for the whole scene.
-    criteriaEnd.y = criteriaStart.y + Math.max(0, critPanRoom);
-  }
+  const critPan = Math.min(56, Math.max(0, lens.y - criteriaStart.y - 16));
+  const criteriaEnd = place(translate(criteriaStart, 0, critPan));
+  if (!contains(criteriaEnd, lens)) throw new Error('Criteria camera loses the class graphic');
 
   await preparePage(page, '/reference/tool-assurance');
   const map = await box(page, '.c7map');
@@ -341,7 +347,8 @@ async function planScenes(page) {
   frameworkStart = place(frameworkStart);
   if (!contains(frameworkStart, map)) throw new Error('Tool map is clipped at the start');
   const mapSlack = frameworkStart.h - map.h;
-  let frameworkEnd = place(translate(frameworkStart, 0, Math.min(36, Math.max(0, mapSlack * 0.18))));
+  let frameworkEnd = place(translate(frameworkStart, 0, Math.min(28, Math.max(0, mapSlack * 0.12))));
+  frameworkEnd = pushIn(frameworkEnd, 1.03, rectCenter(map), map);
   if (!contains(frameworkEnd, map)) frameworkEnd = frameworkStart;
 
   await preparePage(page, '/use-cases/6.1');
@@ -349,12 +356,14 @@ async function planScenes(page) {
   const headings = await boxes(page, '.ucsec__h');
   const flowHeading = [...headings].reverse().find((item) => item.y <= flow.y + 8);
   if (!flowHeading) throw new Error('Use case flow heading was not found');
-  const flowHero = unionRect([flowHeading, flow], 4);
-  let flowStart = frameContaining(flowHero, 16);
-  flowStart = pinTop(flowStart, flowHero, flowHeading.y - 28);
+  let flowStart = frameContaining(flow, 20);
+  const flowTop = Math.min(flowHeading.y - 36, flow.y - 64);
+  flowStart = pinTop(flowStart, flow, flowTop);
   flowStart = place(flowStart);
   if (!contains(flowStart, flow)) throw new Error('Use case camera clips the flow');
-  let flowEnd = place(zoomAbout(flowStart, 1.045, rectCenter(flow)));
+  const flowSlide = Math.min(48, Math.max(0, flow.y - flowStart.y - 20));
+  let flowEnd = place(translate(flowStart, 0, flowSlide));
+  flowEnd = pushIn(flowEnd, 1.02, rectCenter(flow), flow);
   if (!contains(flowEnd, flow)) flowEnd = flowStart;
 
   await preparePage(page, '/reference/sqa-cards');
@@ -377,11 +386,16 @@ async function planScenes(page) {
   const reviewHead = await box(page, 'h1');
   const reviewHero = unionRect([reviewHead, rv], 8);
   let reviewStart = frameContaining(reviewHero, 18);
-  reviewStart = pinTop(reviewStart, reviewHero, reviewHead.y - 22);
+  reviewStart = pinTop(reviewStart, reviewHero, reviewHead.y - 52);
   reviewStart = place(reviewStart);
-  if (!contains(reviewStart, rv)) throw new Error('Supplier review camera clips the step flow');
-  let reviewEnd = place(zoomAbout(reviewStart, 1.05, rectCenter(rv)));
-  if (!contains(reviewEnd, rv)) reviewEnd = reviewStart;
+  if (!contains(reviewStart, rv) || !contains(reviewStart, reviewHead)) {
+    throw new Error('Supplier review camera clips the title or the step flow');
+  }
+  const reviewRoom = Math.max(0, reviewHead.y - reviewStart.y - 18);
+  let reviewEnd = place(translate(reviewStart, 0, Math.min(24, reviewRoom)));
+  if (!contains(reviewEnd, rv) || !contains(reviewEnd, reviewHead)) reviewEnd = reviewStart;
+  const reviewZoom = pushIn(reviewEnd, 1.018, rectCenter(reviewHero), rv);
+  if (contains(reviewZoom, reviewHead) && contains(reviewZoom, rv)) reviewEnd = reviewZoom;
 
   return {
     home: { route: '/', start: homeStart, end: homeEnd },
@@ -585,7 +599,7 @@ async function assertOutput(file) {
     '-show_entries', 'format=duration,size:stream=codec_name,width,height,avg_frame_rate,pix_fmt,codec_type',
     '-of', 'json',
     file,
-  ]);
+  ], { captureStdout: true });
   const jsonStart = probe.indexOf('{');
   const parsed = JSON.parse(probe.slice(jsonStart));
   const video = parsed.streams.find((stream) => stream.codec_type === 'video');
