@@ -1016,10 +1016,10 @@ main:focus { outline: none; }
 }
 
 .other-project__desc {
-  max-width: 50ch;
+  max-width: 46ch;
   color: var(--color-text-2);
-  font-size: var(--fs-lead);
-  line-height: 1.35;
+  font-size: var(--fs-product-desc);
+  line-height: 1.48;
   letter-spacing: var(--tracking-tight);
 }
 
@@ -1065,18 +1065,42 @@ main:focus { outline: none; }
     gap: var(--space-xl);
   }
 
+  /* Tablet: mirror the two-column editorial hierarchy of the tool rows
+     without letting a full-width cinematic clip dominate this section. */
   .other-project {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
-      "intro media"
-      "intro body";
-    gap: var(--space-xl);
+      "body intro"
+      "media media";
+    column-gap: var(--space-xl);
+    row-gap: var(--space-l);
     align-items: start;
   }
 
   .other-project__intro { grid-area: intro; }
-  .other-project__media { grid-area: media; }
+  .other-project__media {
+    grid-area: media;
+    width: min(100%, 30rem);
+    justify-self: center;
+  }
   .other-project__body { grid-area: body; }
+}
+
+@media (min-width: 64rem) {
+  /* Match .product's 3 / 4 / 7 column split: Babel and Cosmic now have
+     exactly the same preview width as VDA, SPC and VDA 20. The frame,
+     glyph and playback behaviour are shared across both sections. */
+  .other-project {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 4fr) minmax(0, 7fr);
+    grid-template-areas: "body media intro";
+    column-gap: var(--space-l);
+    row-gap: var(--space-m);
+  }
+
+  .other-project__media {
+    width: 100%;
+    justify-self: stretch;
+  }
 }
 
 
