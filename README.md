@@ -28,7 +28,7 @@ you edit are the files that get served.
 │   ├── vda-6-3-process-audit-copilot.html
 │   └── aiag-vda-spc-guide.html
 ├── assets/
-│   ├── video/              the two product preview videos (MP4/H.264)
+│   ├── video/              five landing-page preview videos (MP4/H.264)
 │   └── screenshots/        real preview frames used by the tool galleries
 ├── feedback-received.html  static confirmation page for feedback submissions
 ├── privacy.html            privacy notice
@@ -46,8 +46,8 @@ you edit are the files that get served.
 └── README.md
 ```
 
-The two product preview videos live in `assets/video/`; `netlify.toml` caches
-that path aggressively.
+All five landing-page preview videos live in `assets/video/`; `netlify.toml`
+caches that path aggressively.
 
 ## Local preview
 
@@ -88,17 +88,20 @@ preview videos. They are the real visual assets used for the product pages,
 not synthetic mock-ups. Keep their filenames and relative paths in sync if a
 preview is replaced.
 
-## The product preview videos
+## Landing-page preview videos
 
-Both previews are shipped:
+Five previews are shipped (three quality tools, two other projects):
 
 | Row | File | Size |
 | --- | --- | --- |
 | VDA 6.3 Process Audit Copilot | `assets/video/vda-preview.mp4` | ~624 KB |
 | AIAG-VDA SPC Interactive Guide | `assets/video/spc-preview.mp4` | ~617 KB |
+| AI in Quality Reference (VDA 20) | `assets/video/vda20-preview.mp4` | ~1.97 MB |
+| Babel Life | `assets/video/babel-life-preview.mp4` | ~1.83 MB |
+| Cosmic Timeline | `assets/video/cosmic-timeline-preview.mp4` | ~1.32 MB |
 
-Each sits inside its product row's `.media-frame`, directly after the quiet
-geometric SVG glyph mark, as the second and upper layer:
+Each sits inside the same `.media-frame` component, in a `.product` or
+`.other-project` row, after the quiet geometric SVG glyph mark:
 
 ```html
 <span class="media-frame__glyph" aria-hidden="true">
@@ -127,19 +130,19 @@ Format and encoding:
 
 - **MP4 / H.264 only.** No WebM source and no poster image: the glyph is the
   base state, and the video is transparent until its row activates.
-- **Roughly 1280x800 at 30 fps** — matches the frame's `aspect-ratio: 16 / 10`
-  exactly, so `object-fit: cover` crops nothing. The shipped pair are 1280x800,
-  30 fps, 12 seconds each.
+- **1280x800 at 30 fps** — matches the frame's `aspect-ratio: 16 / 10`
+  exactly, so `object-fit: cover` crops nothing.
 - **Muted, looping, `playsinline`** — required, or mobile browsers refuse to
   play inline. `aria-hidden="true"` keeps a decorative clip out of the
   accessibility tree.
-- **Keep them lightweight** — no audio track, short loop, ideally under 1 MB;
-  the current files are about 600 KB each. `preload="metadata"` means only the
-  header downloads until a row is activated.
+- **Keep them lightweight** — no audio track, short loop. The VDA/SPC clips
+  are around 600 KB, the newer clips around 1.3–2 MB. `preload="metadata"`
+  avoids fetching the full file until a row is activated.
 
 Replacing or adding one is just a matter of dropping the file into
 `assets/video/` and pointing the `<source>` at it — no CSS or JS changes.
-`js/main.js` picks up any `<video>` inside a `.product` automatically:
+`js/main.js` picks up any `<video>` inside a `.product` or `.other-project`
+automatically:
 
 - pointer devices — the row activates on hover or keyboard focus, the video
   fades in and plays, and leaving pauses it and rewinds to the start;
@@ -148,8 +151,14 @@ Replacing or adding one is just a matter of dropping the file into
 - `prefers-reduced-motion: reduce` — the video never autoplays and stays
   hidden, so the row shows its quiet glyph instead.
 
-Activation is one shared state, `.product.preview-active`, which also drives
-the full-width warm row background and the +14px product-title shift.
+The same `.preview-active` class reveals the video and shifts the title
+in both sections. The quality-tool rows also get a warm full-width background.
+
+At desktop sizes (`min-width: 64rem`), `.product` and `.other-project` use the
+same `3fr / 4fr / 7fr` grid with previews in the middle column. On tablets,
+Other projects' previews are capped at 30rem; on phones, both sets of previews
+remain fluid. This keeps the Babel/Cosmic clips the same visual size as VDA,
+SPC and VDA 20 without changing the video files or playback scripts.
 
 ## Dedicated tool pages
 
