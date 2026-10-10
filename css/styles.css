@@ -783,7 +783,8 @@ main:focus { outline: none; }
     transform 680ms var(--preview-ease);
 }
 
-.product.preview-active .media-frame__video {
+.product.preview-active .media-frame__video,
+.other-project.preview-active .media-frame__video {
   opacity: 1;
   transform: scale(1);
 }
@@ -958,6 +959,7 @@ main:focus { outline: none; }
 .other-projects {
   padding-block: var(--space-xl);
   background-color: var(--color-surface);
+  overflow-x: clip;
 }
 
 .other-projects__head {
@@ -974,6 +976,7 @@ main:focus { outline: none; }
 }
 
 .other-project {
+  --preview-ease: cubic-bezier(0.16, 1, 0.3, 1);
   display: grid;
   gap: var(--space-l);
   padding-block: var(--space-l);
@@ -993,6 +996,17 @@ main:focus { outline: none; }
 .other-project__title {
   font-size: clamp(2rem, 1.5rem + 2.5vw, 4rem);
   letter-spacing: var(--tracking-display);
+  transition: transform 660ms var(--preview-ease);
+}
+
+.other-project.preview-active .other-project__title { transform: translateX(14px); }
+
+/* These rows are an editorial list, not the tool grid, so the preview frame
+   is an extra cell rather than a product column. The frame, glyph and video
+   are the same elements the tool rows use. */
+.other-project__media {
+  margin: 0;
+  min-width: 0;
 }
 
 .other-project__body {
@@ -1053,8 +1067,16 @@ main:focus { outline: none; }
 
   .other-project {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-areas:
+      "intro media"
+      "intro body";
     gap: var(--space-xl);
+    align-items: start;
   }
+
+  .other-project__intro { grid-area: intro; }
+  .other-project__media { grid-area: media; }
+  .other-project__body { grid-area: body; }
 }
 
 
@@ -1907,16 +1929,19 @@ body.lightbox-open { overflow: hidden; }
   /* Reveal previews and move the CTA arrow by state change only. */
   .media-frame,
   .media-frame__video,
-  .product.preview-active .media-frame__video { transform: none !important; }
+  .product.preview-active .media-frame__video,
+  .other-project.preview-active .media-frame__video { transform: none !important; }
 
   /* Playback is suppressed here, so do not swap the glyph for a frozen frame:
      the row still activates, it just keeps its quiet marker. */
-  .product.preview-active .media-frame__video { opacity: 0 !important; }
+  .product.preview-active .media-frame__video,
+  .other-project.preview-active .media-frame__video { opacity: 0 !important; }
 
   .cta:hover .cta__label,
   .cta:hover .cta__arrow { transform: none !important; }
 
-  .product.preview-active .product__title { transform: none !important; }
+  .product.preview-active .product__title,
+  .other-project.preview-active .other-project__title { transform: none !important; }
 
   .skip-link { transition: none; }
 }

@@ -113,18 +113,20 @@
     try { video.currentTime = 0; } catch (error) { /* not seekable yet */ }
   };
 
+  var previewRows = '.product, .other-project';
+
   var activateOnly = function (product) {
     // One preview at a time. Entering a row, by pointer or by keyboard,
     // ends whatever other row was running — including one that still holds
     // focus after a click opened another tab. Otherwise that row's
     // mouseleave guard keeps its video up and two previews play at once.
-    document.querySelectorAll('.product').forEach(function (other) {
+    document.querySelectorAll(previewRows).forEach(function (other) {
       if (other !== product) { deactivate(other); }
     });
     activate(product);
   };
 
-  document.querySelectorAll('.product').forEach(function (product) {
+  document.querySelectorAll(previewRows).forEach(function (product) {
     if (finePointer.matches) {
       product.addEventListener('mouseenter', function () { activateOnly(product); });
 
