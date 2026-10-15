@@ -78,10 +78,15 @@ netlify deploy --prod
 
 ## The product pages and previews
 
-The landing product titles and `Explore the tool` actions link to the two pages
-in `tools/`. The header, lower CTA and form-related pages retain the existing
-landing navigation, so a visitor can move from the landing to the tool list and
-from either tool page back to the landing.
+The landing product titles, `Explore the tool` actions and footer links
+open the three live applications directly in a new tab:
+- VDA 6.3: `https://vda63-guia-consulta.netlify.app/`
+- AIAG-VDA SPC: `https://spc-aiag-vda-2026.netlify.app/`
+- AI in Quality Reference: `https://ai-quality-reference-preview.netlify.app/`
+
+The detailed background pages in `tools/` remain available at their own URLs
+for documentation and SEO, but no longer interrupt the main path to the apps.
+The header, lower CTA and form-related pages retain the existing landing navigation.
 
 The gallery images in `assets/screenshots/` are extracted from the two shipped
 preview videos. They are the real visual assets used for the product pages,
