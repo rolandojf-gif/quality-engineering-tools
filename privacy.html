@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
+<meta name="google" content="notranslate">
 <title>Privacy Notice — Quality Engineering Tools</title>
 <meta name="description" content="Privacy Notice for Quality Engineering Tools, covering form submissions, click tracking, and analytics.">
 <meta name="theme-color" content="#f8f8f6">
@@ -38,6 +39,11 @@
   <div class="masthead__bar">
     <a class="brand" href="/">Quality Engineering Tools</a>
 
+    <div class="language-switch" role="group" aria-label="Language" hidden>
+      <button type="button" data-language="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+      <button type="button" data-language="es" lang="es" aria-label="Castellano" aria-pressed="false">ES <span>Castellano</span></button>
+    </div>
+
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
 
     <nav class="site-nav" id="site-nav" aria-label="Primary">
@@ -60,7 +66,7 @@
         <p class="section-index">/Notice</p>
         <div class="section-head__text">
           <h1 class="section-title" id="privacy-title">Privacy Notice</h1>
-          <p class="section-note">Last updated: September 2026</p>
+          <p class="section-note">Last updated: October 2026</p>
           <div class="prose">
             <p><strong>Quality Engineering Tools</strong> is an independent engineering-tools website operated by <strong>Rolando Fernández</strong>. This notice explains how data is collected, used, and protected when you visit this website or use its features.</p>
           </div>
@@ -87,6 +93,8 @@
 
           <h2 class="form-done__title">4. Cookies and Consent</h2>
           <p>The current site does not use a cookie consent banner because the current analytics configuration does not use client-side tracking cookies. If the data-processing setup or analytics configuration changes, this notice will be updated accordingly.</p>
+
+          <p><strong>Language preference:</strong> Your selected language (English or Spanish) is saved in this browser using local storage so it is remembered on your next visit. Internal links may also include a language parameter to keep your selection between pages. This preference is not used for tracking.</p>
 
           <h2 class="form-done__title">5. Data Protection Rights and Contact</h2>
           <p>Depending on your jurisdiction (such as under the European Union General Data Protection Regulation or similar data protection frameworks), you may have the right to request access to, correction of, or deletion of personal information you have provided, or to object to its processing.</p>
@@ -151,6 +159,8 @@
   </div>
 </footer>
 
+<script src="js/translations.js" defer></script>
+<script src="js/i18n.js" defer></script>
 <script src="js/main.js" defer></script>
 <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"aacfcbaa721e4443981c76aaffa8f299"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

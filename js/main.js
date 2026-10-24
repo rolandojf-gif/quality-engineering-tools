@@ -16,23 +16,28 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  var t = function (text) { return window.qualityToolsI18n ? window.qualityToolsI18n.t(text) : text; };
 
 
   /* 1  Navigation ------------------------------------------------------- */
 
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('site-nav');
-  var desktopNav = window.matchMedia('(min-width: 52rem)');
+  var desktopNav = window.matchMedia('(min-width: 75rem)');
 
   if (toggle && nav) {
     var setNav = function (open) {
       nav.classList.toggle('is-open', open);
       nav.setAttribute('aria-hidden', String(!desktopNav.matches && !open));
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.textContent = open ? 'Close' : 'Menu';
+      toggle.textContent = t(open ? 'Close' : 'Menu');
     };
 
     setNav(false);
+
+    document.addEventListener('qualitytools:languagechange', function () {
+      setNav(nav.classList.contains('is-open'));
+    });
 
     toggle.addEventListener('click', function () {
       setNav(!nav.classList.contains('is-open'));
@@ -180,10 +185,15 @@
       lightboxIndex = index;
       lightboxImage.src = item.getAttribute('data-full');
       lightboxImage.alt = item.querySelector('img').getAttribute('alt') || '';
-      lightboxTitle.textContent = item.getAttribute('data-title') || 'Product preview';
-      lightboxSource.textContent = item.getAttribute('data-source') || 'Real product preview frame';
+      lightboxTitle.textContent = item.getAttribute('data-title') || t('Product preview');
+      lightboxSource.textContent = item.getAttribute('data-source') || t('Real product preview frame');
       lightboxCounter.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(galleryItems.length).padStart(2, '0');
     };
+
+    renderLightbox(0);
+    document.addEventListener('qualitytools:languagechange', function () {
+      renderLightbox(lightboxIndex);
+    });
 
     var openLightbox = function (index, trigger) {
       lightboxTrigger = trigger || document.activeElement;

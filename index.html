@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
+<meta name="google" content="notranslate">
 <title>Quality Engineering Tools — VDA 6.3, AIAG-VDA SPC &amp; AI Quality Reference</title>
 <meta name="description" content="Explore independent quality engineering tools for VDA 6.3 process auditing, AIAG-VDA SPC, and AI in quality based on VDA Volume 20.">
 <meta name="theme-color" content="#f8f8f6">
@@ -39,6 +40,11 @@
   <div class="masthead__bar">
     <a class="brand" href="#top">Quality Engineering Tools</a>
 
+    <div class="language-switch" role="group" aria-label="Language" hidden>
+      <button type="button" data-language="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+      <button type="button" data-language="es" lang="es" aria-label="Castellano" aria-pressed="false">ES <span>Castellano</span></button>
+    </div>
+
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
 
     <nav class="site-nav" id="site-nav" aria-label="Primary">
@@ -62,7 +68,7 @@
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="container hero__layout">
       <div class="hero__content">
-        <h1 class="hero__title" id="hero-title">Quality Engineering<br>Tools</h1>
+        <h1 class="hero__title" id="hero-title" data-i18n-hero>Quality Engineering<br>Tools</h1>
 
         <div class="hero__body">
           <p class="hero__lead">Practical digital tools for automotive quality engineering.</p>
@@ -669,6 +675,8 @@
   </div>
 </footer>
 
+<script src="js/translations.js" defer></script>
+<script src="js/i18n.js" defer></script>
 <script src="js/main.js" defer></script>
 <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"aacfcbaa721e4443981c76aaffa8f299"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

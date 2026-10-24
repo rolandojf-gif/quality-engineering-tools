@@ -278,3 +278,22 @@ Modern evergreen browsers. The layout relies on CSS Grid, custom properties,
 All rights reserved unless stated otherwise. VDA and AIAG-VDA are referenced as
 published industry standards; this project is independent and not affiliated
 with, authorised by or endorsed by VDA, AIAG or their publishers.
+
+## English / Spanish
+
+English is the default, regardless of the browser language. The visible **EN / ES Castellano** selector is available on every page, outside the mobile menu. It switches the page without reloading and remembers the choice under `quality-tools-language` in local storage. Explicit `?lang=en` / `?lang=es` links override that preference; internal links and the feedback confirmation retain the language even when storage is unavailable.
+
+- `js/translations.js` contains reviewed Spanish copy keyed by the original English text. Add matching entries when changing or adding English copy, including accessibility labels and gallery captions.
+- `js/i18n.js` updates existing text nodes and selected attributes, preserving markup, form data, links and event listeners. It does not call a translation service or inject translated HTML.
+- `js/main.js` updates dynamic menu and gallery text on `qualitytools:languagechange`.
+- Product names, standards, external application URLs and submitted form values remain stable. Existing screenshots and videos retain their original recorded language.
+- Without JavaScript, the original English content remains readable and the inactive language selector is hidden.
+
+Optional DOM regression checks (no build step or runtime dependency):
+
+```sh
+npm install --no-save --package-lock=false jsdom@26.1.0
+node --test scripts/test-i18n.cjs
+```
+
+The checks cover all five pages, translation coverage, exact English restoration, storage failures, URL overrides, form preservation, mobile-menu state, gallery navigation and no-JavaScript content. Check responsive layout separately in a browser when editing navigation or long headings.
