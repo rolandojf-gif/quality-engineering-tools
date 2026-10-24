@@ -440,7 +440,10 @@ main:focus { outline: none; }
 }
 
 html[lang="es"] .hero__title { font-size: clamp(2.5rem, 1rem + 5.5vw, 5.75rem); }
-html[lang="es"] .product__title { overflow-wrap: anywhere; }
+html[lang="es"] .product__title {
+  font-size: clamp(3rem, 5.5vw, 6.5rem);
+  overflow-wrap: anywhere;
+}
 html[lang="es"] .tool-hero__title { overflow-wrap: anywhere; }
 
 
