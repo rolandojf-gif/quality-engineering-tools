@@ -374,7 +374,7 @@ main:focus { outline: none; }
    not reliable over whatever scrolls underneath. Pills elsewhere keep it. */
 .masthead .pill { color: var(--color-text); }
 
-@media (min-width: 52rem) {
+@media (min-width: 75rem) {
   .nav-toggle { display: none; }
 
   .masthead__bar {
@@ -400,6 +400,48 @@ main:focus { outline: none; }
     gap: var(--space-m);
   }
 }
+
+/* Language stays outside the collapsible navigation, including on mobile. */
+.language-switch {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 3px;
+  border: var(--rule);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.language-switch button {
+  min-width: 44px;
+  min-height: 38px;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.language-switch button[aria-pressed="true"] {
+  color: var(--color-bg);
+  background: var(--color-text);
+}
+
+.language-switch button:hover { box-shadow: inset 0 0 0 1px var(--color-text); }
+
+@media (max-width: 74.999rem) {
+  .masthead__bar { display: grid; grid-template-columns: 1fr auto; gap: 0.6rem; }
+  .brand { grid-column: 1 / -1; }
+  .language-switch { grid-column: 1; grid-row: 2; justify-self: start; }
+  .nav-toggle { grid-column: 2; grid-row: 2; min-height: 44px; }
+  .site-nav { grid-column: 1 / -1; }
+  body { padding-top: calc(var(--header-h) + 5rem); }
+  html { scroll-padding-top: calc(var(--header-h) + 6rem); }
+}
+
+html[lang="es"] .hero__title { font-size: clamp(2.5rem, 1rem + 5.5vw, 5.75rem); }
+html[lang="es"] .product__title { overflow-wrap: anywhere; }
+html[lang="es"] .tool-hero__title { overflow-wrap: anywhere; }
 
 
 /* 06  Hero ================================================================ */
