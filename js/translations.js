@@ -48,6 +48,8 @@ window.qualityToolsSpanish = {
   "View on GitHub": "Ver en GitHub",
   "An interactive, physics-grounded journey through the history of the universe, from the Planck epoch to the present.": "Un recorrido interactivo, basado en la física, por la historia del universo, desde la época de Planck hasta el presente.",
   "Visit Cosmic Timeline": "Visitar Cosmic Timeline",
+  "A source-backed observatory of the AI race, comparing open and closed models, releases, capabilities, speed, pricing and the AI 2027 scenario.": "Un observatorio de la carrera por la IA respaldado por fuentes, que compara modelos abiertos y cerrados, lanzamientos, capacidades, velocidad, precios y el escenario AI 2027.",
+  "Visit MOLOCH.SH": "Visitar MOLOCH.SH",
   "Next steps": "Siguientes pasos",
   "Send feedback": "Enviar comentarios",
   "Engineering First": "La ingeniería primero",
