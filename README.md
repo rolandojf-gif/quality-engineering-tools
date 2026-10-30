@@ -95,7 +95,7 @@ preview is replaced.
 
 ## Landing-page preview videos
 
-Five previews are shipped (three quality tools, two other projects):
+Six previews are shipped (three quality tools, three other projects):
 
 | Row | File | Size |
 | --- | --- | --- |
@@ -104,6 +104,7 @@ Five previews are shipped (three quality tools, two other projects):
 | AI in Quality Reference (VDA 20) | `assets/video/vda20-preview.mp4` | ~1.97 MB |
 | Babel Life | `assets/video/babel-life-preview.mp4` | ~1.83 MB |
 | Cosmic Timeline | `assets/video/cosmic-timeline-preview.mp4` | ~1.32 MB |
+| MOLOCH.SH | `assets/video/moloch-sh-preview.mp4` | ~3.57 MB |
 
 Each sits inside the same `.media-frame` component, in a `.product` or
 `.other-project` row, after the quiet geometric SVG glyph mark:
@@ -141,7 +142,8 @@ Format and encoding:
   play inline. `aria-hidden="true"` keeps a decorative clip out of the
   accessibility tree.
 - **Keep them lightweight** — no audio track, short loop. The VDA/SPC clips
-  are around 600 KB, the newer clips around 1.3–2 MB. `preload="metadata"`
+  are around 600 KB, the newer clips around 1.3–2 MB, and the MOLOCH.SH clip, a
+  29-second captioned walkthrough rather than a short loop, about 3.6 MB. `preload="metadata"`
   avoids fetching the full file until a row is activated.
 
 Replacing or adding one is just a matter of dropping the file into
