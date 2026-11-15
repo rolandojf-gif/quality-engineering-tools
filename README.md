@@ -28,7 +28,7 @@ you edit are the files that get served.
 │   ├── vda-6-3-process-audit-copilot.html
 │   └── aiag-vda-spc-guide.html
 ├── assets/
-│   ├── video/              five landing-page preview videos (MP4/H.264)
+│   ├── video/              landing-page preview videos (MP4/H.264)
 │   └── screenshots/        real preview frames used by the tool galleries
 ├── feedback-received.html  static confirmation page for feedback submissions
 ├── privacy.html            privacy notice
@@ -46,7 +46,7 @@ you edit are the files that get served.
 └── README.md
 ```
 
-All five landing-page preview videos live in `assets/video/`; `netlify.toml`
+All landing-page preview videos live in `assets/video/`; `netlify.toml`
 caches that path aggressively.
 
 ## Local preview
@@ -95,7 +95,7 @@ preview is replaced.
 
 ## Landing-page preview videos
 
-Six previews are shipped (three quality tools, three other projects):
+Seven previews are shipped (three quality tools, four other projects):
 
 | Row | File | Size |
 | --- | --- | --- |
@@ -105,6 +105,7 @@ Six previews are shipped (three quality tools, three other projects):
 | Babel Life | `assets/video/babel-life-preview.mp4` | ~1.83 MB |
 | Cosmic Timeline | `assets/video/cosmic-timeline-preview.mp4` | ~1.32 MB |
 | MOLOCH.SH | `assets/video/moloch-sh-preview.mp4` | ~3.57 MB |
+| RADAR.IA | `assets/video/radar-ia-preview.mp4` | ~1.76 MB |
 
 Each sits inside the same `.media-frame` component, in a `.product` or
 `.other-project` row, after the quiet geometric SVG glyph mark:
@@ -143,7 +144,8 @@ Format and encoding:
   accessibility tree.
 - **Keep them lightweight** — no audio track, short loop. The VDA/SPC clips
   are around 600 KB, the newer clips around 1.3–2 MB, and the MOLOCH.SH clip, a
-  29-second captioned walkthrough rather than a short loop, about 3.6 MB. `preload="metadata"`
+  29-second captioned walkthrough rather than a short loop, about 3.6 MB; the RADAR.IA clip
+  (`scripts/generate-radar-ia-preview.mjs`) is a 14-second scroll through the live front page, about 1.8 MB. `preload="metadata"`
   avoids fetching the full file until a row is activated.
 
 Replacing or adding one is just a matter of dropping the file into

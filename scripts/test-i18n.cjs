@@ -34,7 +34,7 @@ for (const path of pages) {
     const title = d.title;
     const englishAttributes = [...d.querySelectorAll('[aria-label], [alt], [data-title], [data-source]')].flatMap(el =>
       ['aria-label', 'alt', 'data-title', 'data-source'].filter(a => el.hasAttribute(a)).map(a => [el, a, el.getAttribute(a)]));
-    const unchanged = new Set(['Quality Engineering Tools', 'GitHub', 'VDA 6.3:2023', 'AIAG-VDA SPC', 'AIAG-VDA', 'SPC', 'Babel Life', 'Cosmic Timeline', 'Rolando Fernández', 'Core Tools', 'LinkedIn', 'Cloudflare Web Analytics:', '/A', '/B', '/C', '/D', 'AIAG-VDA SPC / 01', 'AIAG-VDA SPC / 02', 'AIAG-VDA SPC / 03', 'VDA 6.3', 'EN', 'ES', 'Castellano']);
+    const unchanged = new Set(['Quality Engineering Tools', 'GitHub', 'VDA 6.3:2023', 'AIAG-VDA SPC', 'AIAG-VDA', 'SPC', 'Babel Life', 'Cosmic Timeline', 'MOLOCH.SH', 'RADAR.IA', 'Rolando Fernández', 'Core Tools', 'LinkedIn', 'Cloudflare Web Analytics:', '/A', '/B', '/C', '/D', 'AIAG-VDA SPC / 01', 'AIAG-VDA SPC / 02', 'AIAG-VDA SPC / 03', 'VDA 6.3', 'EN', 'ES', 'Castellano']);
     const walker = d.createTreeWalker(d.body, w.NodeFilter.SHOW_TEXT);
     let node;
     while ((node = walker.nextNode())) {

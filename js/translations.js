@@ -50,6 +50,8 @@ window.qualityToolsSpanish = {
   "Visit Cosmic Timeline": "Visitar Cosmic Timeline",
   "A source-backed observatory of the AI race, comparing open and closed models, releases, capabilities, speed, pricing and the AI 2027 scenario.": "Un observatorio de la carrera por la IA respaldado por fuentes, que compara modelos abiertos y cerrados, lanzamientos, capacidades, velocidad, precios y el escenario AI 2027.",
   "Visit MOLOCH.SH": "Visitar MOLOCH.SH",
+  "A daily strategic radar of the race towards AGI: frontier models, agents, chips and compute, China and AI economics, filtered by relevance and published in English and Spanish.": "Un radar estratégico diario de la carrera hacia la AGI: modelos frontera, agentes, chips y cómputo, China y economía de la IA, filtrado por relevancia y publicado en inglés y español.",
+  "Visit RADAR.IA": "Visitar RADAR.IA",
   "Next steps": "Siguientes pasos",
   "Send feedback": "Enviar comentarios",
   "Engineering First": "La ingeniería primero",
